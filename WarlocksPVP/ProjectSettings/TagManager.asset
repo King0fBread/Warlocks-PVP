@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BG
+    uniqueID: 3569116599
+    locked: 0
+  - name: EnvironmentBack
+    uniqueID: 3501905361
+    locked: 0
+  - name: EnvironmentFront
+    uniqueID: 813931025
+    locked: 0
+  - name: Cards
+    uniqueID: 3687340623
+    locked: 0
