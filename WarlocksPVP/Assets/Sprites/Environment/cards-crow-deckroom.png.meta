@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4963ef95ed682a94da38df22520c03c6
+guid: aaa89545ed57d4445b1de1ad64f02819
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 22
+  spritePixelsToUnits: 15
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -107,13 +107,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cards-player-sprites_0
+      name: cards-crow-deckroom_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 2
-        width: 42
-        height: 93
+        x: 0
+        y: 78
+        width: 32
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,20 +121,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22cd51e37ca2efb47b38c5c801116f05
-      internalID: -1191330938
+      spriteID: 222aa12a125390e4b8d00f77c0540acf
+      internalID: 401483720
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cards-player-sprites_1
+      name: cards-crow-deckroom_1
       rect:
         serializedVersion: 2
-        x: 51
-        y: 2
-        width: 42
-        height: 93
+        x: 32
+        y: 78
+        width: 32
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,8 +142,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7c6e5056b3f2854aad8e27037d29a4e
-      internalID: -1951762187
+      spriteID: 94c1ad43fa1f18148b7f231c5509c12c
+      internalID: -2042442441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cards-crow-deckroom_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 78
+        width: 32
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d08c3cb911c582e4d819bb044da2cbcc
+      internalID: 48256005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cards-crow-deckroom_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 78
+        width: 32
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c4825610d5e0e84385e9caba7fa263f
+      internalID: -965501449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cards-crow-deckroom_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 28
+        width: 32
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9827050885085f64ba494a7790b51366
+      internalID: 245412339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cards-crow-deckroom_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 28
+        width: 32
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 189be32ecf4f72849b316201b2f36d67
+      internalID: -423631841
       vertices: []
       indices: 
       edges: []
@@ -159,8 +243,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      cards-player-sprites_0: -1191330938
-      cards-player-sprites_1: -1951762187
+      cards-crow-deckroom_0: 401483720
+      cards-crow-deckroom_1: -2042442441
+      cards-crow-deckroom_2: 48256005
+      cards-crow-deckroom_3: -965501449
+      cards-crow-deckroom_4: 245412339
+      cards-crow-deckroom_5: -423631841
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
