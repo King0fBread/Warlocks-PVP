@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4963ef95ed682a94da38df22520c03c6
+guid: c54eabdfae8f59441a43d79342d36eee
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 22
+  spritePixelsToUnits: 19
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -107,13 +107,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cards-player-sprites_0
+      name: cards-player-sprites-64_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 2
-        width: 42
-        height: 93
+        x: 0
+        y: 0
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,20 +121,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22cd51e37ca2efb47b38c5c801116f05
-      internalID: -1191330938
+      spriteID: 32716c7c4fbd48a4d8b05e0c723cfa20
+      internalID: -1865939083
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cards-player-sprites_1
+      name: cards-player-sprites-64_1
       rect:
         serializedVersion: 2
-        x: 51
-        y: 2
-        width: 42
-        height: 93
+        x: 32
+        y: 0
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,8 +142,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7c6e5056b3f2854aad8e27037d29a4e
-      internalID: -1951762187
+      spriteID: 8a9e876395727d947bb534f3f06fd966
+      internalID: 2060006061
       vertices: []
       indices: 
       edges: []
@@ -159,8 +159,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      cards-player-sprites_0: -1191330938
-      cards-player-sprites_1: -1951762187
+      cards-player-sprites-64_0: -1865939083
+      cards-player-sprites-64_1: 2060006061
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
