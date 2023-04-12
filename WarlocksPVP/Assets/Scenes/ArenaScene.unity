@@ -3357,8 +3357,8 @@ MonoBehaviour:
   - {fileID: 1810994343}
   - {fileID: 1239189007}
   _playerSprites:
-  - {fileID: -1865939083, guid: c54eabdfae8f59441a43d79342d36eee, type: 3}
   - {fileID: 2060006061, guid: c54eabdfae8f59441a43d79342d36eee, type: 3}
+  - {fileID: -1865939083, guid: c54eabdfae8f59441a43d79342d36eee, type: 3}
 --- !u!4 &1734322657
 Transform:
   m_ObjectHideFlags: 0

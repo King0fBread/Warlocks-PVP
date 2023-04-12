@@ -12,14 +12,12 @@ public class TestingNetcodeUI : MonoBehaviour
     private void Awake()
     {
         _hostButton.onClick.AddListener(() => {
-            Debug.Log("starting host");
             NetworkManager.Singleton.StartHost();
             Hide();
         });
 
         _clientButton.onClick.AddListener(() =>
         {
-            Debug.Log("starting client");
             NetworkManager.Singleton.StartClient();
             Hide();
         });
