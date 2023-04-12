@@ -16,5 +16,28 @@ public class PlayerLogic : NetworkBehaviour
     {
         transform.position = PlayerVisualsAssigner.Instance.GetTransformByID((int)OwnerClientId).position;
         _spriteRenderer.sprite = PlayerVisualsAssigner.Instance.GetSpriteByID((int)OwnerClientId);
+        if (!IsServer)
+        {
+            MovePlayersToDeckRoomServerRpc();
+        }
+    }
+    //private void Update()
+    //{
+    //    if (!IsServer)
+    //    {
+    //        return;
+    //    }
+
+    //}
+    [ServerRpc (RequireOwnership = false)]
+    private void MovePlayersToDeckRoomServerRpc()
+    {
+        MovePlayersToDeckRoomClientRpc();
+    }
+    [ClientRpc]
+    private void MovePlayersToDeckRoomClientRpc()
+    {
+        Camera playerCamera = Camera.main;
+        PlayerRoomTransitions.Instance.MovePlayerToDeckRoom(playerCamera.transform);
     }
 }
