@@ -24,4 +24,8 @@ public class CardSelectorStatsDisplayer : MonoBehaviour
     {
         CardStatsObject.Instance.Hide();
     }
+    private void OnMouseDown()
+    {
+        CardSlotsAssigner.Instance.DisplayCardOnAvailableHolder(_cardSprite);
+    }
 }
