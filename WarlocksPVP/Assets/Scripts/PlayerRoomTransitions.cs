@@ -7,6 +7,7 @@ public class PlayerRoomTransitions : MonoBehaviour
 {
     public event EventHandler OnSwitchedToArenaRoom;
     public event EventHandler OnSwitchedToDeckRoom;
+
     [SerializeField] private Transform _arenaRoom;
     [SerializeField] private Transform _deckSelectionRoom;
     public static PlayerRoomTransitions Instance;
