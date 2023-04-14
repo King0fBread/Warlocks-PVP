@@ -26,6 +26,8 @@ public class CardSelectorStatsDisplayer : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        CardSlotsAssigner.Instance.DisplayCardOnAvailableHolder(_cardSprite);
+        Card card = new Card(_cardSprite, _cardName, _attackAmount, _healAmount, _poisonAmount, _lifestealAmount);
+        CardSlotsAssigner.Instance.AddAndDisplayCardOnAvailableHolder(card);
+        
     }
 }

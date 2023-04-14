@@ -12,9 +12,9 @@ public class CardSlotsAssigner : MonoBehaviour
     {
         Instance = this;
     }
-    public void DisplayCardOnAvailableHolder(Sprite cardSprite)
+    public void AddAndDisplayCardOnAvailableHolder(Card card)
     {
-        _cardHolders[_currentIndex].DisplayCard(cardSprite);
+        _cardHolders[_currentIndex].DisplayCard(card.GetCardSprite());
         _currentIndex++;
 
     }
