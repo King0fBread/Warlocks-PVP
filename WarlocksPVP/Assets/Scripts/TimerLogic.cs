@@ -8,12 +8,19 @@ public class TimerLogic : NetworkBehaviour
 {
     [SerializeField] private int _maxTimerValueInSeconds;
     private Slider _timerSlider;
+    private Image _backgroundImage;
     private bool _timerEnabled = false;
     private float _timerValue;
+    private Color _visibleColorAlpha;
+    private Color _hiddenColorAlpha;
     private void Awake()
     {
         _timerSlider = GetComponent<Slider>();
+        _backgroundImage = transform.GetChild(0).GetComponent<Image>();
         _timerValue = _maxTimerValueInSeconds;
+
+        _visibleColorAlpha = new Color(1f, 1f, 1f, 1f);
+        _hiddenColorAlpha = new Color(1f, 1f, 1f, 0f);
     }
     private void Start()
     {
@@ -24,6 +31,7 @@ public class TimerLogic : NetworkBehaviour
     {
         _timerEnabled = true;
         _timerValue = _maxTimerValueInSeconds;
+        _backgroundImage.color = _visibleColorAlpha;
     }
 
     private void Update()
@@ -33,20 +41,21 @@ public class TimerLogic : NetworkBehaviour
 
         if (_timerEnabled)
         {
-            DisplayTimerClientRpc();
+            _timerValue -= Time.deltaTime;
+            DisplayTimerClientRpc(_timerValue);
         }
     }
     [ClientRpc]
-    private void DisplayTimerClientRpc()
+    private void DisplayTimerClientRpc(float timerValue)
     {
-        if (_timerValue > 0)
+        if (timerValue > 0)
         {
-            _timerValue -= Time.deltaTime;
-            _timerSlider.value = _timerValue / _maxTimerValueInSeconds;
+            _timerSlider.value = timerValue / _maxTimerValueInSeconds;
         }
         else
         {
             _timerEnabled = false;
+            _backgroundImage.color = _hiddenColorAlpha;
             Debug.Log("timer finished");
         }
     }
