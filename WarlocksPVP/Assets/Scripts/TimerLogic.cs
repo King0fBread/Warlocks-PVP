@@ -57,6 +57,9 @@ public class TimerLogic : NetworkBehaviour
             _timerEnabled = false;
             _backgroundImage.color = _hiddenColorAlpha;
             Debug.Log("timer finished");
+
+            Camera playerCamera = Camera.main;
+            PlayerRoomTransitions.Instance.MovePlayerToArenaRoom(playerCamera.transform);
         }
     }
 }

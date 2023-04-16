@@ -27,8 +27,42 @@ public class Card : MonoBehaviour
     {
         return CardSprite;
     }
-    public void Attack()
+    public void ExecuteAttack()
     {
 
+    }
+    private void Posion()
+    {
+        if(PoisonAmount > 0)
+        {
+            print("poison");
+            //apply poison to opponent on next turn
+
+            //NOT THE 'APPLIED EARILER' POISON LOGIC
+        }
+    }
+    private void Heal()
+    {
+        if(HealAmount > 0)
+        {
+            print("heal");
+            //applay heal to owner on call
+        }
+    }
+    private void Attack()
+    {
+        if(AttackAmount > 0)
+        {
+            print("attack");
+            //apply attack to oppenent on call
+        }
+    }
+    private void Lifesteal()
+    {
+        if(LifestealAmount > 0)
+        {
+            print("lifesteal");
+            //apply damage to oppenent and heal owner on call
+        }
     }
 }
