@@ -6,10 +6,12 @@ using Unity.Netcode;
 public class CoinToss : NetworkBehaviour 
 {
     [SerializeField] private GameObject _coinAnimationObject;
-    [SerializeField] private AnimationClip[] _coinTossAnimations;
     private bool _coinHasBeenTossed = false;
+    private string[] _coinTossAnimations = new string[2];
     private void Start()
     {
+        _coinTossAnimations[0] = "CoinflipLeft";
+        _coinTossAnimations[1] = "CoinflipRight";
         PlayerRoomTransitions.Instance.OnSwitchedToArenaRoom += TryCoinToss_OnSwitchedToArenaRoom;
     }
 
@@ -26,6 +28,6 @@ public class CoinToss : NetworkBehaviour
     private void PlayCoinAnimationClientRpc(int animationIndex)
     {
         _coinAnimationObject.SetActive(true);
-        _coinAnimationObject.transform.GetChild(0).GetComponent<Animator>().Play(_coinTossAnimations.ToString());
+        _coinAnimationObject.transform.GetChild(0).GetComponent<Animator>().Play(_coinTossAnimations[animationIndex]);
     }
 }

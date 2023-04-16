@@ -4058,9 +4058,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coinAnimationObject: {fileID: 1730456161}
-  _coinTossAnimations:
-  - {fileID: 7400000, guid: aaeebfc8efa1e724eb583f5169c5d55a, type: 2}
-  - {fileID: 7400000, guid: 7364be6eca643514e8d3aa0b9ad3accb, type: 2}
 --- !u!4 &1433490974
 Transform:
   m_ObjectHideFlags: 0
