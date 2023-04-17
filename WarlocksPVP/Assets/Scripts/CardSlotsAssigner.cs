@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CardSlotsAssigner : MonoBehaviour
 {
+    public event EventHandler<CardEventArgs> OnCardSelected;
+
     [SerializeField] private CardHolder[] _cardHolders;
     private int _currentIndex = 0;
 
@@ -25,10 +28,14 @@ public class CardSlotsAssigner : MonoBehaviour
             holder.ClearHolder();
         }
     }
-    public void AddAndDisplayCardOnAvailableHolder(Card card)
+    public void AddToDeckAndDisplayCardOnAvailableHolder(Card card)
     {
-        _cardHolders[_currentIndex].DisplayCard(card.GetCardSprite());
-        _currentIndex++;
+        if(_currentIndex < 4)
+        {
+            _cardHolders[_currentIndex].DisplayCard(card.GetCardSprite());
+            _currentIndex++;
+            OnCardSelected?.Invoke(this, new CardEventArgs(card));
+        }
 
     }
 }

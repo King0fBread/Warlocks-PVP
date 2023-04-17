@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class Card : MonoBehaviour
+public class Card : NetworkBehaviour
 {
     private Sprite CardSprite;
     private string CardName;
