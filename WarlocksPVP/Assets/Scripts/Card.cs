@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class Card : NetworkBehaviour
+public class Card : INetworkSerializable
 {
-    private Sprite CardSprite;
-    private string CardName;
-    private int AttackAmount;
-    private int HealAmount;
-    private int PoisonAmount;
-    private int LifestealAmount;
+    public Sprite CardSprite;
 
-    public Card(Sprite CardSprite, string CardName, int AttackAmount, int HealAmount, int PoisonAmount, int LifestealAmount)
+    public int CardSpriteId;
+    public string CardName;
+    public int AttackAmount;
+    public int HealAmount;
+    public int PoisonAmount;
+    public int LifestealAmount;
+
+    public Card(Sprite CardSprite, int CardSpriteId, string CardName, int AttackAmount, int HealAmount, int PoisonAmount, int LifestealAmount)
     {
         this.CardSprite = CardSprite;
+        this.CardSpriteId = CardSpriteId;
         this.CardName = CardName;
         this.AttackAmount = AttackAmount;
         this.HealAmount = HealAmount;
@@ -24,19 +27,15 @@ public class Card : NetworkBehaviour
 
     public int ExecutionIndex;
 
-    public Sprite GetCardSprite()
-    {
-        return CardSprite;
-    }
     public void ExecuteAttack()
     {
 
     }
-    private void Posion()
+    private void Poison()
     {
         if(PoisonAmount > 0)
         {
-            print("poison");
+            Debug.Log("poison");
             //apply poison to opponent on next turn
 
             //NOT THE 'APPLIED EARILER' POISON LOGIC
@@ -46,7 +45,7 @@ public class Card : NetworkBehaviour
     {
         if(HealAmount > 0)
         {
-            print("heal");
+            Debug.Log("heal");
             //applay heal to owner on call
         }
     }
@@ -54,7 +53,7 @@ public class Card : NetworkBehaviour
     {
         if(AttackAmount > 0)
         {
-            print("attack");
+            Debug.Log("attack");
             //apply attack to oppenent on call
         }
     }
@@ -62,8 +61,18 @@ public class Card : NetworkBehaviour
     {
         if(LifestealAmount > 0)
         {
-            print("lifesteal");
+            Debug.Log("lifesteal");
             //apply damage to oppenent and heal owner on call
         }
+    }
+
+    public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+    {
+        serializer.SerializeValue(ref CardSpriteId);
+        serializer.SerializeValue(ref CardName);
+        serializer.SerializeValue(ref AttackAmount);
+        serializer.SerializeValue(ref HealAmount);
+        serializer.SerializeValue(ref PoisonAmount);
+        serializer.SerializeValue(ref LifestealAmount);
     }
 }

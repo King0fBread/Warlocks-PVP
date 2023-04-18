@@ -1653,6 +1653,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
+      propertyPath: _cardSpriteId
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
       propertyPath: _poisonAmount
       value: 2
       objectReference: {fileID: 0}
@@ -2369,7 +2373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 790278454}
   m_Layer: 0
-  m_Name: CardsSlotsLeft (1)
+  m_Name: CardsSlotsRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3083,6 +3087,77 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9152253477391303680, guid: 9390885728e17404e996688a05b35de4, type: 3}
   m_PrefabInstance: {fileID: 5315594764787592257}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1052512708
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1052512711}
+  - component: {fileID: 1052512710}
+  - component: {fileID: 1052512709}
+  m_Layer: 0
+  m_Name: PlayerDeckList
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1052512709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052512708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 2073719202
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+--- !u!114 &1052512710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052512708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ec7d56c63e025428ff04a62c9c3eb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _leftPlayerCardSpriteRenderers:
+  - {fileID: 858803373}
+  - {fileID: 2138843984}
+  - {fileID: 826606034}
+  - {fileID: 215231667}
+  _rightPlayerCardSpriteRenderers:
+  - {fileID: 1235002573}
+  - {fileID: 1933736032}
+  - {fileID: 624798474}
+  - {fileID: 140396046}
+--- !u!4 &1052512711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052512708}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.4469087, y: 0.16809088, z: -0.46099335}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1069595686
 GameObject:
   m_ObjectHideFlags: 0
@@ -3879,6 +3954,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
+      propertyPath: _cardSpriteId
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
       propertyPath: _lifestealAmount
       value: 2
       objectReference: {fileID: 0}
@@ -4395,6 +4474,59 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.6000003, y: 1.6, z: 0.20000003}
   m_Center: {x: 0, y: 0.0000009536743, z: -0.0000009536743}
+--- !u!1 &1528211724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1528211726}
+  - component: {fileID: 1528211725}
+  m_Layer: 0
+  m_Name: CardSprites
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1528211725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528211724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a64226b8a04a7418ed89cafd642e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardSpritesArray:
+  - {fileID: -803779446, guid: cccf389a41a4c1e4394d40a9e9c265f0, type: 3}
+  - {fileID: -519071160, guid: cccf389a41a4c1e4394d40a9e9c265f0, type: 3}
+  - {fileID: 2100057674, guid: cccf389a41a4c1e4394d40a9e9c265f0, type: 3}
+  - {fileID: -1104878016, guid: cccf389a41a4c1e4394d40a9e9c265f0, type: 3}
+  - {fileID: 1749396339, guid: cccf389a41a4c1e4394d40a9e9c265f0, type: 3}
+  - {fileID: 1935194958, guid: cccf389a41a4c1e4394d40a9e9c265f0, type: 3}
+  - {fileID: 537186400, guid: cccf389a41a4c1e4394d40a9e9c265f0, type: 3}
+  - {fileID: 347241136, guid: cccf389a41a4c1e4394d40a9e9c265f0, type: 3}
+--- !u!4 &1528211726
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528211724}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.547059, y: 0.79372567, z: -0.52382714}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1580536547
 GameObject:
   m_ObjectHideFlags: 0
@@ -4580,6 +4712,10 @@ PrefabInstance:
     - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
       propertyPath: _healAmount
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
+      propertyPath: _cardSpriteId
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9152253477391303680, guid: 9390885728e17404e996688a05b35de4, type: 3}
       propertyPath: m_RootOrder
@@ -5384,6 +5520,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
+      propertyPath: _cardSpriteId
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
       propertyPath: _poisonAmount
       value: 2
       objectReference: {fileID: 0}
@@ -6100,6 +6240,10 @@ PrefabInstance:
       propertyPath: _attackAmount
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
+      propertyPath: _cardSpriteId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9152253477391303680, guid: 9390885728e17404e996688a05b35de4, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -6171,6 +6315,10 @@ PrefabInstance:
     - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
       propertyPath: _cardName
       value: Plague
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
+      propertyPath: _cardSpriteId
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
       propertyPath: _poisonAmount
@@ -6255,6 +6403,10 @@ PrefabInstance:
     - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
       propertyPath: _attackAmount
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
+      propertyPath: _cardSpriteId
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
       propertyPath: _poisonAmount

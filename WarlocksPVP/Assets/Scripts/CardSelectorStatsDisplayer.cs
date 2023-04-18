@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CardSelectorStatsDisplayer : MonoBehaviour
 {
+    [SerializeField] private int _cardSpriteId;
     [SerializeField] private string _cardName;
     [SerializeField] private int _attackAmount;
     [SerializeField] private int _healAmount;
@@ -26,7 +27,7 @@ public class CardSelectorStatsDisplayer : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        Card card = new Card(_cardSprite, _cardName, _attackAmount, _healAmount, _poisonAmount, _lifestealAmount);
+        Card card = new Card(_cardSprite, _cardSpriteId, _cardName, _attackAmount, _healAmount, _poisonAmount, _lifestealAmount);
         CardSlotsAssigner.Instance.AddToDeckAndDisplayCardOnAvailableHolder(card);
         
     }

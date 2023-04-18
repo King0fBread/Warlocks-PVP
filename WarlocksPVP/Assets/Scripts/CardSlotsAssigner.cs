@@ -6,6 +6,7 @@ using UnityEngine;
 public class CardSlotsAssigner : MonoBehaviour
 {
     public event EventHandler<CardEventArgs> OnCardSelected;
+    public event EventHandler OnDeckCleared;
 
     [SerializeField] private CardHolder[] _cardHolders;
     private int _currentIndex = 0;
@@ -32,10 +33,19 @@ public class CardSlotsAssigner : MonoBehaviour
     {
         if(_currentIndex < 4)
         {
-            _cardHolders[_currentIndex].DisplayCard(card.GetCardSprite());
+            _cardHolders[_currentIndex].DisplayCard(card.CardSprite);
             _currentIndex++;
             OnCardSelected?.Invoke(this, new CardEventArgs(card));
         }
 
+    }
+    public void ClearHolders()
+    {
+        _currentIndex = 0;
+        foreach(CardHolder holder in _cardHolders)
+        {
+            holder.ClearHolder();
+        }
+        OnDeckCleared?.Invoke(this, EventArgs.Empty);
     }
 }
