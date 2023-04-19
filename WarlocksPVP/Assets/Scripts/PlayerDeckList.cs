@@ -31,26 +31,27 @@ public class PlayerDeckList : NetworkBehaviour
     private void AddCardToList_OnCardSelected(object sender, CardEventArgs e)
     {
         print("event invoked");
-        AddCardToListServerRpc(e.SelectedCardObject, _playerIsHost);
+        int selectedCardId = e.SelectedCardObject.GetArrayId();
+        AddCardToListServerRpc(selectedCardId, _playerIsHost);
     }
 
     [ServerRpc (RequireOwnership = false)]
-    private void AddCardToListServerRpc(Card card, bool isHost)
+    private void AddCardToListServerRpc(int cardId, bool isHost)
     {
         print("server rpc invoked");
-        AddCardToListClientRpc(card, isHost);
+        AddCardToListClientRpc(cardId, isHost);
     }
     [ClientRpc]
-    private void AddCardToListClientRpc(Card card, bool isHost)
+    private void AddCardToListClientRpc(int cardId, bool isHost)
     {
         if (isHost)
         {
-            _leftPlayerDeckList.Add(card);
+            _leftPlayerDeckList.Add(CardsContainer.Instance.AvailableCardsArray[cardId]);
             print("added to left list");
         }
         else
         {
-            _rightPlayerDeckList.Add(card);
+            _rightPlayerDeckList.Add(CardsContainer.Instance.AvailableCardsArray[cardId]);
             print("added to right list");
         }
     }

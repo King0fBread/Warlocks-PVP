@@ -3,30 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class Card : INetworkSerializable
+public class Card
 {
     public Sprite CardSprite;
-
-    public int CardSpriteId;
     public string CardName;
     public int AttackAmount;
     public int HealAmount;
     public int PoisonAmount;
     public int LifestealAmount;
 
-    public Card(Sprite CardSprite, int CardSpriteId, string CardName, int AttackAmount, int HealAmount, int PoisonAmount, int LifestealAmount)
+    private int _arrayId;
+
+    public Card(Sprite CardSprite, string CardName, int AttackAmount, int HealAmount, int PoisonAmount, int LifestealAmount, int arrayId)
     {
         this.CardSprite = CardSprite;
-        this.CardSpriteId = CardSpriteId;
         this.CardName = CardName;
         this.AttackAmount = AttackAmount;
         this.HealAmount = HealAmount;
         this.PoisonAmount = PoisonAmount;
         this.LifestealAmount = LifestealAmount;
+
+        _arrayId = arrayId;
     }
 
     public int ExecutionIndex;
 
+    public int GetArrayId()
+    {
+        return _arrayId;
+    }
     public void ExecuteAttack()
     {
 
@@ -64,15 +69,5 @@ public class Card : INetworkSerializable
             Debug.Log("lifesteal");
             //apply damage to oppenent and heal owner on call
         }
-    }
-
-    public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
-    {
-        serializer.SerializeValue(ref CardSpriteId);
-        serializer.SerializeValue(ref CardName);
-        serializer.SerializeValue(ref AttackAmount);
-        serializer.SerializeValue(ref HealAmount);
-        serializer.SerializeValue(ref PoisonAmount);
-        serializer.SerializeValue(ref LifestealAmount);
     }
 }

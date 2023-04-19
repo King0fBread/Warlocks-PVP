@@ -4483,35 +4483,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1528211726}
-  - component: {fileID: 1528211725}
+  - component: {fileID: 1528211727}
   m_Layer: 0
-  m_Name: CardSprites
+  m_Name: AllCardsList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1528211725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1528211724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7a64226b8a04a7418ed89cafd642e74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardSpritesArray:
-  - {fileID: -803779446, guid: cccf389a41a4c1e4394d40a9e9c265f0, type: 3}
-  - {fileID: -519071160, guid: cccf389a41a4c1e4394d40a9e9c265f0, type: 3}
-  - {fileID: 2100057674, guid: cccf389a41a4c1e4394d40a9e9c265f0, type: 3}
-  - {fileID: -1104878016, guid: cccf389a41a4c1e4394d40a9e9c265f0, type: 3}
-  - {fileID: 1749396339, guid: cccf389a41a4c1e4394d40a9e9c265f0, type: 3}
-  - {fileID: 1935194958, guid: cccf389a41a4c1e4394d40a9e9c265f0, type: 3}
-  - {fileID: 537186400, guid: cccf389a41a4c1e4394d40a9e9c265f0, type: 3}
-  - {fileID: 347241136, guid: cccf389a41a4c1e4394d40a9e9c265f0, type: 3}
 --- !u!4 &1528211726
 Transform:
   m_ObjectHideFlags: 0
@@ -4527,6 +4506,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1528211727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528211724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d332d1a39cf9f84e87d1e949b9ea3fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1580536547
 GameObject:
   m_ObjectHideFlags: 0
