@@ -33,6 +33,5 @@ public class CardSelectorStatsDisplayer : MonoBehaviour
     private void OnMouseDown()
     {
         CardSlotsAssigner.Instance.AddToDeckAndDisplayCardOnAvailableHolder(CardsContainer.Instance.AvailableCardsArray[_cardsArrayId]);
-        
     }
 }

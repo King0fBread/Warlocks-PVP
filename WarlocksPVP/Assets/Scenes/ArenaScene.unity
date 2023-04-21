@@ -1657,6 +1657,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
+      propertyPath: _cardsArrayId
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
       propertyPath: _poisonAmount
       value: 2
       objectReference: {fileID: 0}
@@ -3958,6 +3962,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
+      propertyPath: _cardsArrayId
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
       propertyPath: _lifestealAmount
       value: 2
       objectReference: {fileID: 0}
@@ -4706,6 +4714,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
       propertyPath: _cardSpriteId
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
+      propertyPath: _cardsArrayId
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9152253477391303680, guid: 9390885728e17404e996688a05b35de4, type: 3}
@@ -5515,6 +5527,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
+      propertyPath: _cardsArrayId
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
       propertyPath: _poisonAmount
       value: 2
       objectReference: {fileID: 0}
@@ -6235,6 +6251,10 @@ PrefabInstance:
       propertyPath: _cardSpriteId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
+      propertyPath: _cardsArrayId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9152253477391303680, guid: 9390885728e17404e996688a05b35de4, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -6309,6 +6329,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
       propertyPath: _cardSpriteId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
+      propertyPath: _cardsArrayId
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
@@ -6397,6 +6421,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
       propertyPath: _cardSpriteId
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}
+      propertyPath: _cardsArrayId
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7704744811193433125, guid: 9390885728e17404e996688a05b35de4, type: 3}

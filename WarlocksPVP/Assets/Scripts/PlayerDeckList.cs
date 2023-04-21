@@ -14,13 +14,19 @@ public class PlayerDeckList : NetworkBehaviour
     private bool _playerIsHost;
     public override void OnNetworkSpawn()
     {
-        _playerIsHost = _playerIsHost == IsServer ? true : false;
+        _playerIsHost = IsServer ? true : false;
     }
     private void Start()
     {
         print("started deck list");
         CardSlotsAssigner.Instance.OnCardSelected += AddCardToList_OnCardSelected;
         CardSlotsAssigner.Instance.OnDeckCleared += ClearDeckList_OnDeckCleared;
+        PlayerRoomTransitions.Instance.OnSwitchedToArenaRoom += DisplayPlayerDecks_OnSwitchedToArenaRoom;
+    }
+
+    private void DisplayPlayerDecks_OnSwitchedToArenaRoom(object sender, System.EventArgs e)
+    {
+        DisplayPlayerDecksServerRpc();
     }
 
     private void ClearDeckList_OnDeckCleared(object sender, System.EventArgs e)
@@ -74,4 +80,28 @@ public class PlayerDeckList : NetworkBehaviour
             print("cleared right list");
         }
     }
+    [ServerRpc (RequireOwnership = false)]
+    private void DisplayPlayerDecksServerRpc()
+    {
+        DisplayPlayerDecksClientRpc();
+    }
+    [ClientRpc]
+    private void DisplayPlayerDecksClientRpc()
+    {
+        int indexLeft = 0;
+        int indexRight = 0;
+
+        foreach(Card card in _leftPlayerDeckList)
+        {
+            _leftPlayerCardSpriteRenderers[indexLeft].sprite = card.CardSprite;
+            indexLeft++;
+        }
+        foreach(Card card in _rightPlayerDeckList)
+        {
+            _rightPlayerCardSpriteRenderers[indexRight].sprite = card.CardSprite;
+            indexRight++;
+        }
+
+    }
+
 }
