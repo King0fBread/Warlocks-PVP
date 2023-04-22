@@ -6,6 +6,7 @@ using Unity.Netcode;
 public class CoinToss : NetworkBehaviour 
 {
     [SerializeField] private GameObject _coinAnimationObject;
+    [SerializeField] private CardsAttackExecution _cardsAttackExecution;
     private bool _coinHasBeenTossed = false;
     private string[] _coinTossAnimations = new string[2];
     private void Start()
@@ -29,5 +30,8 @@ public class CoinToss : NetworkBehaviour
     {
         _coinAnimationObject.SetActive(true);
         _coinAnimationObject.transform.GetChild(0).GetComponent<Animator>().Play(_coinTossAnimations[animationIndex]);
+
+        //sets the initial starting player, based on cointoss result
+        _cardsAttackExecution._isLeftPlayerTurn = animationIndex == 0;
     }
 }

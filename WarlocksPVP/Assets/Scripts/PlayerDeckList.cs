@@ -5,13 +5,19 @@ using Unity.Netcode;
 
 public class PlayerDeckList : NetworkBehaviour
 {
+    public PlayerDeckList Instance;
+
     [SerializeField] private SpriteRenderer[] _leftPlayerCardSpriteRenderers = new SpriteRenderer[4];
     [SerializeField] private SpriteRenderer[] _rightPlayerCardSpriteRenderers = new SpriteRenderer[4];
 
-    private List<Card> _leftPlayerDeckList = new List<Card>();
-    private List<Card> _rightPlayerDeckList = new List<Card>();
+    public List<Card> _leftPlayerDeckList = new List<Card>();
+    public List<Card> _rightPlayerDeckList = new List<Card>();
 
     private bool _playerIsHost;
+    private void Awake()
+    {
+        Instance = this;
+    }
     public override void OnNetworkSpawn()
     {
         _playerIsHost = IsServer ? true : false;
