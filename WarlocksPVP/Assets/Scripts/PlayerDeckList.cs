@@ -10,8 +10,8 @@ public class PlayerDeckList : NetworkBehaviour
     [SerializeField] private SpriteRenderer[] _leftPlayerCardSpriteRenderers = new SpriteRenderer[4];
     [SerializeField] private SpriteRenderer[] _rightPlayerCardSpriteRenderers = new SpriteRenderer[4];
 
-    public List<Card> _leftPlayerDeckList = new List<Card>();
-    public List<Card> _rightPlayerDeckList = new List<Card>();
+    private List<Card> _leftPlayerDeckList = new List<Card>();
+    private List<Card> _rightPlayerDeckList = new List<Card>();
 
     private bool _playerIsHost;
     private void Awake()
@@ -45,6 +45,14 @@ public class PlayerDeckList : NetworkBehaviour
         print("event invoked");
         int selectedCardId = e.SelectedCardObject.GetArrayId();
         AddCardToListServerRpc(selectedCardId, _playerIsHost);
+    }
+    public List<Card> GetLeftDeckList()
+    {
+        return _leftPlayerDeckList;
+    }
+    public List<Card> GetRightDeckList()
+    {
+        return _rightPlayerDeckList;
     }
 
     [ServerRpc (RequireOwnership = false)]

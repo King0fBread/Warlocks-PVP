@@ -32,6 +32,9 @@ public class CoinToss : NetworkBehaviour
         _coinAnimationObject.transform.GetChild(0).GetComponent<Animator>().Play(_coinTossAnimations[animationIndex]);
 
         //sets the initial starting player, based on cointoss result
-        _cardsAttackExecution._isLeftPlayerTurn = animationIndex == 0;
+        if (animationIndex == 0)
+            _cardsAttackExecution.BeginLeftPlayerAttackExucution();
+        else
+            _cardsAttackExecution.BeginRightPlayerAttackExecution();
     }
 }
