@@ -18,6 +18,19 @@ public class CardsAttackExecution : MonoBehaviour
     [SerializeField] private PlayerDeckList _playerDeckList;
 
     private int _attackIndex = 0;
+    private void Start()
+    {
+        CoinToss.Instance.OnCoinTossed += DecideFirstAttacker_OnCoinTossed;
+    }
+
+    private void DecideFirstAttacker_OnCoinTossed(object sender, int e)
+    {
+        if (e == 0)
+            BeginLeftPlayerAttackExucution();
+        else if (e == 1)
+            BeginRightPlayerAttackExecution();
+    }
+
     public void BeginLeftPlayerAttackExucution()
     {
         _attackIndex++;
@@ -27,6 +40,10 @@ public class CardsAttackExecution : MonoBehaviour
         {
             _attackIndex = 0;
             OnEachPlayerHasAttacked?.Invoke(this, EventArgs.Empty);
+        }
+        else
+        {
+            BeginRightPlayerAttackExecution();
         }
     }
     public void BeginRightPlayerAttackExecution()
@@ -38,6 +55,10 @@ public class CardsAttackExecution : MonoBehaviour
         {
             _attackIndex = 0;
             OnEachPlayerHasAttacked?.Invoke(this, EventArgs.Empty);
+        }
+        else
+        {
+            BeginLeftPlayerAttackExucution();
         }
     }
     private IEnumerator ExecuteAttack(List<Card> deckList, AttackVisualEffect[] attackEffects)
@@ -69,6 +90,7 @@ public class CardsAttackExecution : MonoBehaviour
                 attackEffects[i].DisplayAttackStats(3, card.LifestealAmount);
                 yield return new WaitForSeconds(2f);
             }
+            i++;
         }
     }
 

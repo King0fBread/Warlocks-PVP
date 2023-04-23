@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,18 @@ using Unity.Netcode;
 
 public class CoinToss : NetworkBehaviour 
 {
+    public event EventHandler<int> OnCoinTossed;
+
+    public static CoinToss Instance;
+
     [SerializeField] private GameObject _coinAnimationObject;
     [SerializeField] private CardsAttackExecution _cardsAttackExecution;
     private bool _coinHasBeenTossed = false;
     private string[] _coinTossAnimations = new string[2];
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         _coinTossAnimations[0] = "CoinflipLeft";
@@ -21,7 +30,7 @@ public class CoinToss : NetworkBehaviour
         if (IsServer && !_coinHasBeenTossed)
         {
             _coinHasBeenTossed = true;
-            int randomCoinAnimationIndex = Random.Range(0, 2);
+            int randomCoinAnimationIndex = UnityEngine.Random.Range(0, 2);
             PlayCoinAnimationClientRpc(randomCoinAnimationIndex);
         }
     }
@@ -31,10 +40,11 @@ public class CoinToss : NetworkBehaviour
         _coinAnimationObject.SetActive(true);
         _coinAnimationObject.transform.GetChild(0).GetComponent<Animator>().Play(_coinTossAnimations[animationIndex]);
 
-        //sets the initial starting player, based on cointoss result
-        if (animationIndex == 0)
-            _cardsAttackExecution.BeginLeftPlayerAttackExucution();
-        else
-            _cardsAttackExecution.BeginRightPlayerAttackExecution();
+        StartCoroutine(DelayedAttackSequenceCoroutine(animationIndex));
+    }
+    private IEnumerator DelayedAttackSequenceCoroutine(int animationIndex)
+    {
+        yield return new WaitForSeconds(5f);
+        OnCoinTossed?.Invoke(this, animationIndex);
     }
 }

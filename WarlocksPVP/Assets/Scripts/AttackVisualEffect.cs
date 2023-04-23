@@ -7,7 +7,7 @@ using TMPro;
 public class AttackVisualEffect : MonoBehaviour
 {
     [SerializeField] private Sprite[] _effectSprites = new Sprite[4];
-    private SpriteRenderer _effectSpriteRenderer;
+    private Image _effectSpriteHolder;
     private TextMeshProUGUI _effectValueText;
 
     private float _secondsForDisplaying;
@@ -15,13 +15,13 @@ public class AttackVisualEffect : MonoBehaviour
     private void Awake()
     {
         _effectValueText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        _effectSpriteRenderer = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        _effectSpriteHolder = transform.GetChild(1).GetComponent<Image>();
 
         gameObject.SetActive(false);
     }
     public void DisplayAttackStats(int effectSpriteIndex, int effectValue)
     {
-        _effectSpriteRenderer.sprite = _effectSprites[effectSpriteIndex];
+        _effectSpriteHolder.sprite = _effectSprites[effectSpriteIndex];
         _effectValueText.text = effectValue.ToString();
 
         _secondsForDisplaying = 2;
