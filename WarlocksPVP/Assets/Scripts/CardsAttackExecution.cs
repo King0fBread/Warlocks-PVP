@@ -18,6 +18,7 @@ public class CardsAttackExecution : MonoBehaviour
     [SerializeField] private PlayerDeckList _playerDeckList;
 
     private int _attackIndex = 0;
+    private bool _previousPlayerWasLeft;
     private void Start()
     {
         CoinToss.Instance.OnCoinTossed += DecideFirstAttacker_OnCoinTossed;
@@ -26,42 +27,38 @@ public class CardsAttackExecution : MonoBehaviour
     private void DecideFirstAttacker_OnCoinTossed(object sender, int e)
     {
         if (e == 0)
+        {
             BeginLeftPlayerAttackExucution();
+            _previousPlayerWasLeft = true;
+        }
         else if (e == 1)
-            BeginRightPlayerAttackExecution();
-    }
-
-    public void BeginLeftPlayerAttackExucution()
-    {
-        _attackIndex++;
-        StartCoroutine(ExecuteAttack(_playerDeckList.GetLeftDeckList(), _leftDeckAttackEffects));
-
-        if(_attackIndex == 2)
         {
-            _attackIndex = 0;
-            OnEachPlayerHasAttacked?.Invoke(this, EventArgs.Empty);
+            BeginRightPlayerAttackExecution();
+            _previousPlayerWasLeft = false;
         }
-        else
+    }
+    public void DecideAttackerForNonFirstRound()
+    {
+        if (_previousPlayerWasLeft)
         {
             BeginRightPlayerAttackExecution();
         }
-    }
-    public void BeginRightPlayerAttackExecution()
-    {
-        _attackIndex++;
-        StartCoroutine(ExecuteAttack(_playerDeckList.GetRightDeckList(), _rightDeckAttackEffects));
-
-        if(_attackIndex == 2)
-        {
-            _attackIndex = 0;
-            OnEachPlayerHasAttacked?.Invoke(this, EventArgs.Empty);
-        }
-        else
+        else if (!_previousPlayerWasLeft)
         {
             BeginLeftPlayerAttackExucution();
         }
     }
-    private IEnumerator ExecuteAttack(List<Card> deckList, AttackVisualEffect[] attackEffects)
+    private void BeginLeftPlayerAttackExucution()
+    {
+        _attackIndex++;
+        StartCoroutine(ExecuteAttack(_playerDeckList.GetLeftDeckList(), _leftDeckAttackEffects, true));
+    }
+    private void BeginRightPlayerAttackExecution()
+    {
+        _attackIndex++;
+        StartCoroutine(ExecuteAttack(_playerDeckList.GetRightDeckList(), _rightDeckAttackEffects, false));
+    }
+    private IEnumerator ExecuteAttack(List<Card> deckList, AttackVisualEffect[] attackEffects, bool leftPlayerAttacking)
     {
         int i = 0;
         foreach (Card card in deckList)
@@ -70,27 +67,53 @@ public class CardsAttackExecution : MonoBehaviour
             {
                 attackEffects[i].gameObject.SetActive(true);
                 attackEffects[i].DisplayAttackStats(0, card.PoisonAmount);
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(1.5f);
             }
             if(card.HealAmount > 0)
             {
                 attackEffects[i].gameObject.SetActive(true);
                 attackEffects[i].DisplayAttackStats(1, card.HealAmount);
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(1.5f);
             }
             if(card.AttackAmount > 0)
             {
                 attackEffects[i].gameObject.SetActive(true);
                 attackEffects[i].DisplayAttackStats(2, card.AttackAmount);
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(1.5f);
             }
             if(card.LifestealAmount > 0)
             {
                 attackEffects[i].gameObject.SetActive(true);
                 attackEffects[i].DisplayAttackStats(3, card.LifestealAmount);
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(1.5f);
             }
             i++;
+        }
+
+        //switch to the next player attack or finish if both have attacked
+        if (leftPlayerAttacking)
+        {
+            if (_attackIndex == 2)
+            {
+                _attackIndex = 0;
+                OnEachPlayerHasAttacked?.Invoke(this, EventArgs.Empty);
+            }
+            else
+            {
+                BeginRightPlayerAttackExecution();
+            }
+        }
+        else
+        {
+            if (_attackIndex == 2)
+            {
+                _attackIndex = 0;
+                OnEachPlayerHasAttacked?.Invoke(this, EventArgs.Empty);
+            }
+            else
+            {
+                BeginLeftPlayerAttackExucution();
+            }
         }
     }
 

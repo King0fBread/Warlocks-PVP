@@ -7,9 +7,8 @@ public class HealthBars : MonoBehaviour
 {
     [SerializeField] private Slider _leftPlayerHealthBar;
     [SerializeField] private Slider _rightPlayerHealthBar;
-    private int _leftHealthValue, _rightHealthValue = 15;
-
-
+    private int _leftHealthValue = 15;
+    private int _rightHealthValue = 15;
 
     public static HealthBars Instance;
     private void Awake()

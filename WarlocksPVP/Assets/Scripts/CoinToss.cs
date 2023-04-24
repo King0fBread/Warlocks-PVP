@@ -44,7 +44,7 @@ public class CoinToss : NetworkBehaviour
     }
     private IEnumerator DelayedAttackSequenceCoroutine(int animationIndex)
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4f);
         OnCoinTossed?.Invoke(this, animationIndex);
     }
 }
