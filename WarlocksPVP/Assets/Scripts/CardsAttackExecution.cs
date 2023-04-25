@@ -67,6 +67,7 @@ public class CardsAttackExecution : MonoBehaviour
             {
                 attackEffects[i].gameObject.SetActive(true);
                 attackEffects[i].DisplayAttackStats(0, card.PoisonAmount);
+                card.Poison(!leftPlayerAttacking);
                 yield return new WaitForSeconds(1.5f);
             }
             if(card.HealAmount > 0)
@@ -96,6 +97,7 @@ public class CardsAttackExecution : MonoBehaviour
             if (_attackIndex == 2)
             {
                 _attackIndex = 0;
+                _previousPlayerWasLeft = true;
                 OnEachPlayerHasAttacked?.Invoke(this, EventArgs.Empty);
             }
             else
@@ -108,6 +110,7 @@ public class CardsAttackExecution : MonoBehaviour
             if (_attackIndex == 2)
             {
                 _attackIndex = 0;
+                _previousPlayerWasLeft = false;
                 OnEachPlayerHasAttacked?.Invoke(this, EventArgs.Empty);
             }
             else

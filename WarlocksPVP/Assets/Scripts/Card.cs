@@ -31,14 +31,11 @@ public class Card
         return _arrayId;
     }
 
-    public void Poison()
+    public void Poison(bool affectLeftPlayer)
     {
         if (PoisonAmount > 0)
         {
-            Debug.Log("poison");
-            //apply poison to opponent on next turn
-
-            //NOT THE 'APPLIED EARILER' POISON LOGIC
+            PoisonAttackLogic.Instance.AddPoisonToPlayer(affectLeftPlayer, PoisonAmount);
         }
     }
     public void Heal()
