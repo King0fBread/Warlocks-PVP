@@ -18,5 +18,9 @@ public class CardHolder : MonoBehaviour
     {
         _cardDisplaySpriteRenderer.sprite = null;
     }
+    public SpriteRenderer GetHolderSpriteRenderer()
+    {
+        return _cardDisplaySpriteRenderer;
+    }
 
 }

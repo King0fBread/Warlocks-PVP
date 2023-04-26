@@ -53,3 +53,9 @@ TagManager:
   - name: Cards
     uniqueID: 3687340623
     locked: 0
+  - name: ItemsAboveCards
+    uniqueID: 4177537649
+    locked: 0
+  - name: Front
+    uniqueID: 3444526221
+    locked: 0

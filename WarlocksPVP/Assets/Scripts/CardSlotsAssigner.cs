@@ -9,6 +9,7 @@ public class CardSlotsAssigner : MonoBehaviour
     public event EventHandler OnDeckCleared;
 
     [SerializeField] private CardHolder[] _cardHolders;
+    [SerializeField] private GameObject _sameCardReusedWarning;
     private int _currentIndex = 0;
 
     public static CardSlotsAssigner Instance;
@@ -33,6 +34,15 @@ public class CardSlotsAssigner : MonoBehaviour
     {
         if(_currentIndex < 4)
         {
+            foreach(CardHolder holder in _cardHolders)
+            {
+                if (holder.GetHolderSpriteRenderer().sprite == card.CardSprite)
+                {
+                    _sameCardReusedWarning.SetActive(true);
+                    return;
+                }
+            }
+
             _cardHolders[_currentIndex].DisplayCard(card.CardSprite);
             _currentIndex++;
             OnCardSelected?.Invoke(this, new CardEventArgs(card));

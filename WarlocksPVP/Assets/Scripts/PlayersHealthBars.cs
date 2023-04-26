@@ -18,8 +18,8 @@ public class PlayersHealthBars : MonoBehaviour
     [SerializeField] private GameObject _leftHealthDownIndicator;
     [SerializeField] private GameObject _rightHealthDownIndicator;
 
-    private int _leftHealthValue = 15;
-    private int _rightHealthValue = 15;
+    private int _leftHealthValue = 20;
+    private int _rightHealthValue = 20;
 
     public static PlayersHealthBars Instance;
     private void Awake()
@@ -53,15 +53,15 @@ public class PlayersHealthBars : MonoBehaviour
         {
             _leftHealthValue += amount;
             _leftHelathUpIndicator.SetActive(true);
-            if (_leftHealthValue > 15)
-                _leftHealthValue = 15;
+            if (_leftHealthValue > 20)
+                _leftHealthValue = 20;
         }
         else
         {
             _rightHealthValue += amount;
             _rightHealthUpIndicator.SetActive(true);
-            if (_rightHealthValue > 15)
-                _rightHealthValue = 15;
+            if (_rightHealthValue > 20)
+                _rightHealthValue = 20;
         }
     }
 }
