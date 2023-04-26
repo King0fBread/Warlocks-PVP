@@ -74,18 +74,21 @@ public class CardsAttackExecution : MonoBehaviour
             {
                 attackEffects[i].gameObject.SetActive(true);
                 attackEffects[i].DisplayAttackStats(1, card.HealAmount);
+                card.Heal(leftPlayerAttacking);
                 yield return new WaitForSeconds(1.5f);
             }
             if(card.AttackAmount > 0)
             {
                 attackEffects[i].gameObject.SetActive(true);
                 attackEffects[i].DisplayAttackStats(2, card.AttackAmount);
+                card.Attack(!leftPlayerAttacking);
                 yield return new WaitForSeconds(1.5f);
             }
             if(card.LifestealAmount > 0)
             {
                 attackEffects[i].gameObject.SetActive(true);
                 attackEffects[i].DisplayAttackStats(3, card.LifestealAmount);
+                card.Lifesteal(!leftPlayerAttacking);
                 yield return new WaitForSeconds(1.5f);
             }
             i++;

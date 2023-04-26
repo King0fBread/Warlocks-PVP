@@ -793,6 +793,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163977258}
   m_CullTransparentMesh: 1
+--- !u!1 &216020950 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7811308632305158746, guid: 8cb5f978d360c5441a9e404db324e80a, type: 3}
+  m_PrefabInstance: {fileID: 1800976423}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &217421110
 GameObject:
   m_ObjectHideFlags: 0
@@ -2105,7 +2110,7 @@ GameObject:
   - component: {fileID: 511602814}
   - component: {fileID: 511602813}
   m_Layer: 0
-  m_Name: HealthBars
+  m_Name: PlayerHealthBars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2127,6 +2132,10 @@ MonoBehaviour:
   _rightPlayerHealthBar: {fileID: 1800976425}
   _leftHealthValueDisplayer: {fileID: 1920247010}
   _rightHealthValueDisplayer: {fileID: 58448737}
+  _leftHelathUpIndicator: {fileID: 1529767768}
+  _rightHealthUpIndicator: {fileID: 216020950}
+  _leftHealthDownIndicator: {fileID: 1290321355}
+  _rightHealthDownIndicator: {fileID: 902881458}
 --- !u!4 &511602814
 Transform:
   m_ObjectHideFlags: 0
@@ -3287,6 +3296,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883617931}
   m_CullTransparentMesh: 1
+--- !u!1 &902881458 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7386379148250985599, guid: 8cb5f978d360c5441a9e404db324e80a, type: 3}
+  m_PrefabInstance: {fileID: 1800976423}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &915334541
 GameObject:
   m_ObjectHideFlags: 0
@@ -4457,6 +4471,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249746919}
   m_CullTransparentMesh: 1
+--- !u!1 &1290321355 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7386379148250985599, guid: 8cb5f978d360c5441a9e404db324e80a, type: 3}
+  m_PrefabInstance: {fileID: 7283123877160380463}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1295049547
 GameObject:
   m_ObjectHideFlags: 0
@@ -5465,6 +5484,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d332d1a39cf9f84e87d1e949b9ea3fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1529767768 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7811308632305158746, guid: 8cb5f978d360c5441a9e404db324e80a, type: 3}
+  m_PrefabInstance: {fileID: 7283123877160380463}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1580536547
 GameObject:
   m_ObjectHideFlags: 0
@@ -7984,14 +8008,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1796708679}
     m_Modifications:
-    - target: {fileID: 2492257737996734922, guid: 8cb5f978d360c5441a9e404db324e80a, type: 3}
-      propertyPath: m_Value
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2836784528106545498, guid: 8cb5f978d360c5441a9e404db324e80a, type: 3}
-      propertyPath: m_text
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3165596301116648415, guid: 8cb5f978d360c5441a9e404db324e80a, type: 3}
       propertyPath: m_Name
       value: HealthSlider
@@ -8079,10 +8095,6 @@ PrefabInstance:
     - target: {fileID: 7470376822216055095, guid: 8cb5f978d360c5441a9e404db324e80a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7899340350244093939, guid: 8cb5f978d360c5441a9e404db324e80a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9035808479213383035, guid: 8cb5f978d360c5441a9e404db324e80a, type: 3}
       propertyPath: m_AnchorMax.x

@@ -33,7 +33,7 @@ public class PoisonAttackLogic : MonoBehaviour
         else
         {
             _rightPlayerPoisonIcon.gameObject.SetActive(true);
-            int previousAmount = int.Parse(_leftAmountText.text);
+            int previousAmount = int.Parse(_rightAmountText.text);
             _rightAmountText.text = (previousAmount + poisonAmount).ToString();
         }
     }

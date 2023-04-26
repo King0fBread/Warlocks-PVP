@@ -38,28 +38,26 @@ public class Card
             PoisonAttackLogic.Instance.AddPoisonToPlayer(affectLeftPlayer, PoisonAmount);
         }
     }
-    public void Heal()
+    public void Heal(bool affectLeftPlayer)
     {
         if (HealAmount > 0)
         {
-            Debug.Log("heal");
-            //applay heal to owner on call
+            PlayersHealthBars.Instance.IncreaseHealthValue(affectLeftPlayer, HealAmount);
         }
     }
-    public void Attack()
+    public void Attack(bool affectLeftPlayer)
     {
         if (AttackAmount > 0)
         {
-            Debug.Log("attack");
-            //apply attack to oppenent on call
+            PlayersHealthBars.Instance.DecreaseHealthValue(affectLeftPlayer, AttackAmount);
         }
     }
-    public void Lifesteal()
+    public void Lifesteal(bool leftPlayerIsAttacked)
     {
         if (LifestealAmount > 0)
         {
-            Debug.Log("lifesteal");
-            //apply damage to oppenent and heal owner on call
+            PlayersHealthBars.Instance.DecreaseHealthValue(leftPlayerIsAttacked, LifestealAmount);
+            PlayersHealthBars.Instance.IncreaseHealthValue(!leftPlayerIsAttacked, LifestealAmount);
         }
     }
 }
