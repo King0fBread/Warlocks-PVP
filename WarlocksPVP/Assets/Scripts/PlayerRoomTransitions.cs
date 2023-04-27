@@ -15,6 +15,17 @@ public class PlayerRoomTransitions : MonoBehaviour
     {
         Instance = this;
     }
+    private void Start()
+    {
+        CardsAttackExecution.Instance.OnEachPlayerHasAttacked += MoveToDeckRoom_OnEachPlayerHasAttacked;
+    }
+
+    private void MoveToDeckRoom_OnEachPlayerHasAttacked(object sender, EventArgs e)
+    {
+        Camera playerCamera = Camera.main;
+        MovePlayerToDeckRoom(playerCamera.transform);
+    }
+
     public void MovePlayerToArenaRoom(Transform cameraTransform)
     {
         cameraTransform.position = _arenaRoom.position;

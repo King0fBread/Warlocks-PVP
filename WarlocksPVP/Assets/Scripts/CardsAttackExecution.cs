@@ -17,8 +17,14 @@ public class CardsAttackExecution : MonoBehaviour
 
     [SerializeField] private PlayerDeckList _playerDeckList;
 
+    public static CardsAttackExecution Instance;
+
     private int _attackIndex = 0;
     private bool _previousPlayerWasLeft;
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         CoinToss.Instance.OnCoinTossed += DecideFirstAttacker_OnCoinTossed;

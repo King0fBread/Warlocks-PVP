@@ -28,6 +28,12 @@ public class PlayerDeckList : NetworkBehaviour
         CardSlotsAssigner.Instance.OnCardSelected += AddCardToList_OnCardSelected;
         CardSlotsAssigner.Instance.OnDeckCleared += ClearDeckList_OnDeckCleared;
         PlayerRoomTransitions.Instance.OnSwitchedToArenaRoom += DisplayPlayerDecks_OnSwitchedToArenaRoom;
+        PlayerRoomTransitions.Instance.OnSwitchedToDeckRoom += ClearBothLists_OnSwitchedToDeckRoom;
+    }
+
+    private void ClearBothLists_OnSwitchedToDeckRoom(object sender, System.EventArgs e)
+    {
+        ClearBothListsServerRpc();
     }
 
     private void DisplayPlayerDecks_OnSwitchedToArenaRoom(object sender, System.EventArgs e)
@@ -116,6 +122,17 @@ public class PlayerDeckList : NetworkBehaviour
             indexRight++;
         }
 
+    }
+    [ServerRpc (RequireOwnership = false)]
+    private void ClearBothListsServerRpc()
+    {
+        ClearBothListsClientRpc();
+    }
+    [ClientRpc]
+    private void ClearBothListsClientRpc()
+    {
+        _leftPlayerDeckList.Clear();
+        _rightPlayerDeckList.Clear();
     }
 
 }
