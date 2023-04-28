@@ -46,5 +46,8 @@ public class CoinToss : NetworkBehaviour
     {
         yield return new WaitForSeconds(4f);
         OnCoinTossed?.Invoke(this, animationIndex);
+
+        PlayerRoomTransitions.Instance.OnSwitchedToArenaRoom -= TryCoinToss_OnSwitchedToArenaRoom;
+        Destroy(gameObject);
     }
 }

@@ -24,7 +24,6 @@ public class PlayerDeckList : NetworkBehaviour
     }
     private void Start()
     {
-        print("started deck list");
         CardSlotsAssigner.Instance.OnCardSelected += AddCardToList_OnCardSelected;
         CardSlotsAssigner.Instance.OnDeckCleared += ClearDeckList_OnDeckCleared;
         PlayerRoomTransitions.Instance.OnSwitchedToArenaRoom += DisplayPlayerDecks_OnSwitchedToArenaRoom;
@@ -48,7 +47,6 @@ public class PlayerDeckList : NetworkBehaviour
 
     private void AddCardToList_OnCardSelected(object sender, CardEventArgs e)
     {
-        print("event invoked");
         int selectedCardId = e.SelectedCardObject.GetArrayId();
         AddCardToListServerRpc(selectedCardId, _playerIsHost);
     }
@@ -64,7 +62,6 @@ public class PlayerDeckList : NetworkBehaviour
     [ServerRpc (RequireOwnership = false)]
     private void AddCardToListServerRpc(int cardId, bool isHost)
     {
-        print("server rpc invoked");
         AddCardToListClientRpc(cardId, isHost);
     }
     [ClientRpc]
@@ -73,12 +70,10 @@ public class PlayerDeckList : NetworkBehaviour
         if (isHost)
         {
             _leftPlayerDeckList.Add(CardsContainer.Instance.AvailableCardsArray[cardId]);
-            print("added to left list");
         }
         else
         {
             _rightPlayerDeckList.Add(CardsContainer.Instance.AvailableCardsArray[cardId]);
-            print("added to right list");
         }
     }
     [ServerRpc (RequireOwnership = false)]
@@ -92,12 +87,10 @@ public class PlayerDeckList : NetworkBehaviour
         if (isHost)
         {
             _leftPlayerDeckList.Clear();
-            print("cleared left list");
         }
         else
         {
             _rightPlayerDeckList.Clear();
-            print("cleared right list");
         }
     }
     [ServerRpc (RequireOwnership = false)]
@@ -133,6 +126,7 @@ public class PlayerDeckList : NetworkBehaviour
     {
         _leftPlayerDeckList.Clear();
         _rightPlayerDeckList.Clear();
+        print("cleared both lists");
     }
 
 }

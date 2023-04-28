@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
 public class PlayerRoomTransitions : MonoBehaviour
 {
@@ -22,8 +23,19 @@ public class PlayerRoomTransitions : MonoBehaviour
 
     private void MoveToDeckRoom_OnEachPlayerHasAttacked(object sender, EventArgs e)
     {
+        MoveToDeckRoomAfterRoundServerRpc();
+    }
+    [ServerRpc (RequireOwnership = false)]
+    private void MoveToDeckRoomAfterRoundServerRpc()
+    {
+        MoveToDeckRoomAfterRoundClientRpc();
+    }
+    [ClientRpc]
+    private void MoveToDeckRoomAfterRoundClientRpc()
+    {
         Camera playerCamera = Camera.main;
         MovePlayerToDeckRoom(playerCamera.transform);
+        OnSwitchedToDeckRoom?.Invoke(this, EventArgs.Empty);
     }
 
     public void MovePlayerToArenaRoom(Transform cameraTransform)

@@ -28,6 +28,12 @@ public class CardsAttackExecution : MonoBehaviour
     private void Start()
     {
         CoinToss.Instance.OnCoinTossed += DecideFirstAttacker_OnCoinTossed;
+        PlayerRoomTransitions.Instance.OnSwitchedToArenaRoom += DecideFirstAttackerForNonFirstRound_OnSwitchedToArenaRoom;
+    }
+
+    private void DecideFirstAttackerForNonFirstRound_OnSwitchedToArenaRoom(object sender, EventArgs e)
+    {
+        DecideAttackerForNonFirstRound();
     }
 
     private void DecideFirstAttacker_OnCoinTossed(object sender, int e)
@@ -42,6 +48,8 @@ public class CardsAttackExecution : MonoBehaviour
             BeginRightPlayerAttackExecution();
             _previousPlayerWasLeft = false;
         }
+
+        CoinToss.Instance.OnCoinTossed -= DecideFirstAttacker_OnCoinTossed;
     }
     public void DecideAttackerForNonFirstRound()
     {
@@ -108,6 +116,7 @@ public class CardsAttackExecution : MonoBehaviour
                 _attackIndex = 0;
                 _previousPlayerWasLeft = true;
                 OnEachPlayerHasAttacked?.Invoke(this, EventArgs.Empty);
+                print("INVOKED MOVING TO DECK ROOM");
             }
             else
             {
@@ -121,6 +130,7 @@ public class CardsAttackExecution : MonoBehaviour
                 _attackIndex = 0;
                 _previousPlayerWasLeft = false;
                 OnEachPlayerHasAttacked?.Invoke(this, EventArgs.Empty);
+                print("INVOKED MOVING TO DECK ROOM");
             }
             else
             {
