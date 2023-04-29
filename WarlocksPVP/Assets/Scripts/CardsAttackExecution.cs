@@ -28,7 +28,6 @@ public class CardsAttackExecution : MonoBehaviour
     private void Start()
     {
         CoinToss.Instance.OnCoinTossed += DecideFirstAttacker_OnCoinTossed;
-        PlayerRoomTransitions.Instance.OnSwitchedToArenaRoom += DecideFirstAttackerForNonFirstRound_OnSwitchedToArenaRoom;
     }
 
     private void DecideFirstAttackerForNonFirstRound_OnSwitchedToArenaRoom(object sender, EventArgs e)
@@ -49,6 +48,7 @@ public class CardsAttackExecution : MonoBehaviour
             _previousPlayerWasLeft = false;
         }
 
+        PlayerRoomTransitions.Instance.OnSwitchedToArenaRoom += DecideFirstAttackerForNonFirstRound_OnSwitchedToArenaRoom;
         CoinToss.Instance.OnCoinTossed -= DecideFirstAttacker_OnCoinTossed;
     }
     public void DecideAttackerForNonFirstRound()
@@ -74,38 +74,36 @@ public class CardsAttackExecution : MonoBehaviour
     }
     private IEnumerator ExecuteAttack(List<Card> deckList, AttackVisualEffect[] attackEffects, bool leftPlayerAttacking)
     {
-        int i = 0;
-        foreach (Card card in deckList)
+        for(int i = 0; i<deckList.Count-1; i++)
         {
-            if(card.PoisonAmount > 0)
+            if(deckList[i].PoisonAmount > 0)
             {
                 attackEffects[i].gameObject.SetActive(true);
-                attackEffects[i].DisplayAttackStats(0, card.PoisonAmount);
-                card.Poison(!leftPlayerAttacking);
+                attackEffects[i].DisplayAttackStats(0, deckList[i].PoisonAmount);
+                deckList[i].Poison(!leftPlayerAttacking);
                 yield return new WaitForSeconds(1.5f);
             }
-            if(card.HealAmount > 0)
+            if(deckList[i].HealAmount > 0)
             {
                 attackEffects[i].gameObject.SetActive(true);
-                attackEffects[i].DisplayAttackStats(1, card.HealAmount);
-                card.Heal(leftPlayerAttacking);
+                attackEffects[i].DisplayAttackStats(1, deckList[i].HealAmount);
+                deckList[i].Heal(leftPlayerAttacking);
                 yield return new WaitForSeconds(1.5f);
             }
-            if(card.AttackAmount > 0)
+            if(deckList[i].AttackAmount > 0)
             {
                 attackEffects[i].gameObject.SetActive(true);
-                attackEffects[i].DisplayAttackStats(2, card.AttackAmount);
-                card.Attack(!leftPlayerAttacking);
+                attackEffects[i].DisplayAttackStats(2, deckList[i].AttackAmount);
+                deckList[i].Attack(!leftPlayerAttacking);
                 yield return new WaitForSeconds(1.5f);
             }
-            if(card.LifestealAmount > 0)
+            if(deckList[i].LifestealAmount > 0)
             {
                 attackEffects[i].gameObject.SetActive(true);
-                attackEffects[i].DisplayAttackStats(3, card.LifestealAmount);
-                card.Lifesteal(!leftPlayerAttacking);
+                attackEffects[i].DisplayAttackStats(3, deckList[i].LifestealAmount);
+                deckList[i].Lifesteal(!leftPlayerAttacking);
                 yield return new WaitForSeconds(1.5f);
             }
-            i++;
         }
 
         //switch to the next player attack or finish if both have attacked
@@ -115,8 +113,10 @@ public class CardsAttackExecution : MonoBehaviour
             {
                 _attackIndex = 0;
                 _previousPlayerWasLeft = true;
-                OnEachPlayerHasAttacked?.Invoke(this, EventArgs.Empty);
-                print("INVOKED MOVING TO DECK ROOM");
+
+                CardSlotsAssigner.Instance.ClearHolders();
+                Camera playerCamera = Camera.main;
+                PlayerRoomTransitions.Instance.MovePlayerToDeckRoom(playerCamera.transform);
             }
             else
             {
@@ -129,8 +129,10 @@ public class CardsAttackExecution : MonoBehaviour
             {
                 _attackIndex = 0;
                 _previousPlayerWasLeft = false;
-                OnEachPlayerHasAttacked?.Invoke(this, EventArgs.Empty);
-                print("INVOKED MOVING TO DECK ROOM");
+
+                CardSlotsAssigner.Instance.ClearHolders();
+                Camera playerCamera = Camera.main;
+                PlayerRoomTransitions.Instance.MovePlayerToDeckRoom(playerCamera.transform);
             }
             else
             {

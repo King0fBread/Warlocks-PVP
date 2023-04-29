@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class PlayerRoomTransitions : MonoBehaviour
+public class PlayerRoomTransitions : NetworkBehaviour
 {
     public event EventHandler OnSwitchedToArenaRoom;
     public event EventHandler OnSwitchedToDeckRoom;
@@ -16,28 +16,6 @@ public class PlayerRoomTransitions : MonoBehaviour
     {
         Instance = this;
     }
-    private void Start()
-    {
-        CardsAttackExecution.Instance.OnEachPlayerHasAttacked += MoveToDeckRoom_OnEachPlayerHasAttacked;
-    }
-
-    private void MoveToDeckRoom_OnEachPlayerHasAttacked(object sender, EventArgs e)
-    {
-        MoveToDeckRoomAfterRoundServerRpc();
-    }
-    [ServerRpc (RequireOwnership = false)]
-    private void MoveToDeckRoomAfterRoundServerRpc()
-    {
-        MoveToDeckRoomAfterRoundClientRpc();
-    }
-    [ClientRpc]
-    private void MoveToDeckRoomAfterRoundClientRpc()
-    {
-        Camera playerCamera = Camera.main;
-        MovePlayerToDeckRoom(playerCamera.transform);
-        OnSwitchedToDeckRoom?.Invoke(this, EventArgs.Empty);
-    }
-
     public void MovePlayerToArenaRoom(Transform cameraTransform)
     {
         cameraTransform.position = _arenaRoom.position;
