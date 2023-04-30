@@ -808,6 +808,7 @@ GameObject:
   m_Component:
   - component: {fileID: 217421112}
   - component: {fileID: 217421111}
+  - component: {fileID: 217421113}
   m_Layer: 0
   m_Name: PoisonAttackLogic
   m_TagString: Untagged
@@ -846,6 +847,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &217421113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217421110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 4102407323
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!4 &220533231 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9152253477391303680, guid: 9390885728e17404e996688a05b35de4, type: 3}
@@ -4068,7 +4085,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ec7d56c63e025428ff04a62c9c3eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Instance: {fileID: 0}
   _leftPlayerCardSpriteRenderers:
   - {fileID: 858803373}
   - {fileID: 4471968888563983006}
@@ -8392,6 +8408,10 @@ PrefabInstance:
     - target: {fileID: 7470376822216055095, guid: 8cb5f978d360c5441a9e404db324e80a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7899340350244093939, guid: 8cb5f978d360c5441a9e404db324e80a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9035808479213383035, guid: 8cb5f978d360c5441a9e404db324e80a, type: 3}
       propertyPath: m_AnchorMax.x

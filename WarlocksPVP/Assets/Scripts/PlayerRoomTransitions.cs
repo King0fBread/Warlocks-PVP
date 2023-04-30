@@ -2,9 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Netcode;
 
-public class PlayerRoomTransitions : NetworkBehaviour
+public class PlayerRoomTransitions : MonoBehaviour
 {
     public event EventHandler OnSwitchedToArenaRoom;
     public event EventHandler OnSwitchedToDeckRoom;

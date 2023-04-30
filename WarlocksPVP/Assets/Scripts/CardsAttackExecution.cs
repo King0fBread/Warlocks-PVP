@@ -19,6 +19,9 @@ public class CardsAttackExecution : MonoBehaviour
 
     public static CardsAttackExecution Instance;
 
+    private List<Card> _leftList;
+    private List<Card> _rightList;
+
     private int _attackIndex = 0;
     private bool _previousPlayerWasLeft;
     private void Awake()
@@ -28,6 +31,13 @@ public class CardsAttackExecution : MonoBehaviour
     private void Start()
     {
         CoinToss.Instance.OnCoinTossed += DecideFirstAttacker_OnCoinTossed;
+        PlayerRoomTransitions.Instance.OnSwitchedToArenaRoom += GetPlayerDecks_OnSwitchedToArenaRoom;
+    }
+
+    private void GetPlayerDecks_OnSwitchedToArenaRoom(object sender, EventArgs e)
+    {
+        _leftList = _playerDeckList.GetLeftDeckList();
+        _rightList = _playerDeckList.GetRightDeckList();
     }
 
     private void DecideFirstAttackerForNonFirstRound_OnSwitchedToArenaRoom(object sender, EventArgs e)
@@ -65,16 +75,21 @@ public class CardsAttackExecution : MonoBehaviour
     private void BeginLeftPlayerAttackExucution()
     {
         _attackIndex++;
-        StartCoroutine(ExecuteAttack(_playerDeckList.GetLeftDeckList(), _leftDeckAttackEffects, true));
+        StartCoroutine(ExecuteAttack(_leftList, _leftDeckAttackEffects, true));
     }
     private void BeginRightPlayerAttackExecution()
     {
         _attackIndex++;
-        StartCoroutine(ExecuteAttack(_playerDeckList.GetRightDeckList(), _rightDeckAttackEffects, false));
+        StartCoroutine(ExecuteAttack(_rightList, _rightDeckAttackEffects, false));
     }
     private IEnumerator ExecuteAttack(List<Card> deckList, AttackVisualEffect[] attackEffects, bool leftPlayerAttacking)
     {
-        for(int i = 0; i<deckList.Count-1; i++)
+        for(int i = 0; i<=deckList.Count-1; i++)
+        {
+            print(deckList[i].CardName);
+        }
+
+        for(int i = 0; i<=deckList.Count-1; i++)
         {
             if(deckList[i].PoisonAmount > 0)
             {

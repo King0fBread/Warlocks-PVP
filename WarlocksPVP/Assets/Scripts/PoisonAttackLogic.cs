@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.Netcode;
 
-public class PoisonAttackLogic : MonoBehaviour
+public class PoisonAttackLogic : NetworkBehaviour
 {
     public static PoisonAttackLogic Instance;
 
@@ -22,6 +23,10 @@ public class PoisonAttackLogic : MonoBehaviour
         _leftPlayerPoisonIcon.gameObject.SetActive(false);
         _rightPlayerPoisonIcon.gameObject.SetActive(false);
     }
+    private void Start()
+    {
+        PlayerRoomTransitions.Instance.OnSwitchedToArenaRoom += ApplyExistingPoison_OnSwitchedToArenaRoom;
+    }
     public void AddPoisonToPlayer(bool affectLeftPlayer, int poisonAmount)
     {
         if (affectLeftPlayer)
@@ -29,28 +34,42 @@ public class PoisonAttackLogic : MonoBehaviour
             _leftPlayerPoisonIcon.gameObject.SetActive(true);
             int previousAmount = int.Parse(_leftAmountText.text);
             _leftAmountText.text = (previousAmount + poisonAmount).ToString();
+            _currentLeftPoisonAmount = previousAmount + poisonAmount;
         }
         else
         {
             _rightPlayerPoisonIcon.gameObject.SetActive(true);
             int previousAmount = int.Parse(_rightAmountText.text);
             _rightAmountText.text = (previousAmount + poisonAmount).ToString();
+            _currentRightPosionAmount = previousAmount + poisonAmount;
         }
     }
-    public void ApplyExistingPoison()
+    private void ApplyExistingPoison_OnSwitchedToArenaRoom(object sender, System.EventArgs e)
     {
-        if(_currentLeftPoisonAmount > 0)
+        if (IsServer)
         {
-            //decrease health
+            ApplyExistingPoisonClientRpc();
+        }
+    }
+    [ClientRpc]
+    private void ApplyExistingPoisonClientRpc()
+    {
+        print("poison logic");
+        if (_currentLeftPoisonAmount > 0)
+        {
+            PlayersHealthBars.Instance.DecreaseHealthValue(true, _currentLeftPoisonAmount);
+
+            _currentLeftPoisonAmount = 0;
             _leftAmountText.text = "0";
             _leftPlayerPoisonIcon.gameObject.SetActive(false);
         }
-        else if(_currentRightPosionAmount > 0)
+        else if (_currentRightPosionAmount > 0)
         {
-            //decrease health
+            PlayersHealthBars.Instance.DecreaseHealthValue(false, _currentRightPosionAmount);
+
+            _currentRightPosionAmount = 0;
             _rightAmountText.text = "0";
             _rightPlayerPoisonIcon.gameObject.SetActive(false);
         }
     }
-    
 }
