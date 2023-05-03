@@ -29,6 +29,18 @@ public class PoisonAttackLogic : NetworkBehaviour
     }
     public void AddPoisonToPlayer(bool affectLeftPlayer, int poisonAmount)
     {
+        AddPoisonToPlayerClientRpc(affectLeftPlayer, poisonAmount);
+    }
+    private void ApplyExistingPoison_OnSwitchedToArenaRoom(object sender, System.EventArgs e)
+    {
+        if (IsServer)
+        {
+            ApplyExistingPoisonClientRpc();
+        }
+    }
+    [ClientRpc]
+    private void AddPoisonToPlayerClientRpc(bool affectLeftPlayer, int poisonAmount)
+    {
         if (affectLeftPlayer)
         {
             _leftPlayerPoisonIcon.gameObject.SetActive(true);
@@ -44,13 +56,6 @@ public class PoisonAttackLogic : NetworkBehaviour
             _currentRightPosionAmount = previousAmount + poisonAmount;
         }
     }
-    private void ApplyExistingPoison_OnSwitchedToArenaRoom(object sender, System.EventArgs e)
-    {
-        if (IsServer)
-        {
-            ApplyExistingPoisonClientRpc();
-        }
-    }
     [ClientRpc]
     private void ApplyExistingPoisonClientRpc()
     {
@@ -63,7 +68,7 @@ public class PoisonAttackLogic : NetworkBehaviour
             _leftAmountText.text = "0";
             _leftPlayerPoisonIcon.gameObject.SetActive(false);
         }
-        else if (_currentRightPosionAmount > 0)
+        if (_currentRightPosionAmount > 0)
         {
             PlayersHealthBars.Instance.DecreaseHealthValue(false, _currentRightPosionAmount);
 

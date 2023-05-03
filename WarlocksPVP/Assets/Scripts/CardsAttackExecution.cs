@@ -65,10 +65,12 @@ public class CardsAttackExecution : MonoBehaviour
     {
         if (_previousPlayerWasLeft)
         {
+            _previousPlayerWasLeft = false;
             BeginRightPlayerAttackExecution();
         }
         else if (!_previousPlayerWasLeft)
         {
+            _previousPlayerWasLeft = true;
             BeginLeftPlayerAttackExucution();
         }
     }
@@ -84,12 +86,12 @@ public class CardsAttackExecution : MonoBehaviour
     }
     private IEnumerator ExecuteAttack(List<Card> deckList, AttackVisualEffect[] attackEffects, bool leftPlayerAttacking)
     {
-        for(int i = 0; i<=deckList.Count-1; i++)
+        for(int i = 0; i<=3; i++)
         {
             print(deckList[i].CardName);
         }
 
-        for(int i = 0; i<=deckList.Count-1; i++)
+        for(int i = 0; i<=3; i++)
         {
             if(deckList[i].PoisonAmount > 0)
             {
@@ -127,7 +129,6 @@ public class CardsAttackExecution : MonoBehaviour
             if (_attackIndex == 2)
             {
                 _attackIndex = 0;
-                _previousPlayerWasLeft = true;
 
                 CardSlotsAssigner.Instance.ClearHolders();
                 Camera playerCamera = Camera.main;
@@ -143,7 +144,6 @@ public class CardsAttackExecution : MonoBehaviour
             if (_attackIndex == 2)
             {
                 _attackIndex = 0;
-                _previousPlayerWasLeft = false;
 
                 CardSlotsAssigner.Instance.ClearHolders();
                 Camera playerCamera = Camera.main;
