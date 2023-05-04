@@ -93,34 +93,25 @@ public class CardsAttackExecution : MonoBehaviour
 
         for(int i = 0; i<=3; i++)
         {
-            if(deckList[i].PoisonAmount > 0)
-            {
-                attackEffects[i].gameObject.SetActive(true);
-                attackEffects[i].DisplayAttackStats(0, deckList[i].PoisonAmount);
-                deckList[i].Poison(!leftPlayerAttacking);
-                yield return new WaitForSeconds(1.5f);
-            }
-            if(deckList[i].HealAmount > 0)
-            {
-                attackEffects[i].gameObject.SetActive(true);
-                attackEffects[i].DisplayAttackStats(1, deckList[i].HealAmount);
-                deckList[i].Heal(leftPlayerAttacking);
-                yield return new WaitForSeconds(1.5f);
-            }
-            if(deckList[i].AttackAmount > 0)
-            {
-                attackEffects[i].gameObject.SetActive(true);
-                attackEffects[i].DisplayAttackStats(2, deckList[i].AttackAmount);
-                deckList[i].Attack(!leftPlayerAttacking);
-                yield return new WaitForSeconds(1.5f);
-            }
-            if(deckList[i].LifestealAmount > 0)
-            {
-                attackEffects[i].gameObject.SetActive(true);
-                attackEffects[i].DisplayAttackStats(3, deckList[i].LifestealAmount);
-                deckList[i].Lifesteal(!leftPlayerAttacking);
-                yield return new WaitForSeconds(1.5f);
-            }
+            attackEffects[i].gameObject.SetActive(true);
+            attackEffects[i].DisplayAttackStats(0, deckList[i].PoisonAmount);
+            deckList[i].Poison(!leftPlayerAttacking);
+            yield return new WaitForSeconds(1.5f);
+
+            attackEffects[i].gameObject.SetActive(true);
+            attackEffects[i].DisplayAttackStats(1, deckList[i].HealAmount);
+            deckList[i].Heal(leftPlayerAttacking);
+            yield return new WaitForSeconds(1.5f);
+
+            attackEffects[i].gameObject.SetActive(true);
+            attackEffects[i].DisplayAttackStats(2, deckList[i].AttackAmount);
+            deckList[i].Attack(!leftPlayerAttacking);
+            yield return new WaitForSeconds(1.5f);
+
+            attackEffects[i].gameObject.SetActive(true);
+            attackEffects[i].DisplayAttackStats(3, deckList[i].LifestealAmount);
+            deckList[i].Lifesteal(!leftPlayerAttacking);
+            yield return new WaitForSeconds(1.5f);
         }
 
         //switch to the next player attack or finish if both have attacked

@@ -24,7 +24,7 @@ public class AttackVisualEffect : MonoBehaviour
         _effectSpriteHolder.sprite = _effectSprites[effectSpriteIndex];
         _effectValueText.text = effectValue.ToString();
 
-        _secondsForDisplaying = 2;
+        _secondsForDisplaying = 1.5f;
         _canDisplayStats = true;
     }
     private void Update()
