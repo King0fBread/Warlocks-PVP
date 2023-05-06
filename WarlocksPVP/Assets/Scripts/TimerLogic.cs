@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class TimerLogic : NetworkBehaviour 
 {
+    [SerializeField] private PlayerDeckList _playerDeckList;
+
     [SerializeField] private int _maxTimerValueInSeconds;
     private Slider _timerSlider;
     private Image _backgroundImage;
@@ -57,6 +59,7 @@ public class TimerLogic : NetworkBehaviour
             _timerEnabled = false;
             _backgroundImage.color = _hiddenColorAlpha;
 
+            _playerDeckList.CreateRandomDeckListServerRpc();
             Camera playerCamera = Camera.main;
             PlayerRoomTransitions.Instance.MovePlayerToArenaRoom(playerCamera.transform);
         }

@@ -988,6 +988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b26337beaabf645968aab642d82efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerDeckList: {fileID: 1052512710}
   _maxTimerValueInSeconds: 15
 --- !u!1 &242090671
 GameObject:
