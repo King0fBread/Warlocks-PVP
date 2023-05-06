@@ -122,32 +122,32 @@ public class PlayerDeckList : NetworkBehaviour
         _rightPlayerDeckList.Clear();
     }
 
-    [ServerRpc (RequireOwnership = false)]
-    public void CreateRandomDeckListServerRpc()
-    {
-        CreateRandomDeckClientRpc();
-    }
-    [ClientRpc]
-    private void CreateRandomDeckClientRpc()
-    {
-        List<int> randomCardIds = new List<int>();
-        for(int i = 0; i < 4; i++)
-        {
-            int randomId;
+    //[ServerRpc]
+    //public void CreateRandomDecksListServerRpc()
+    //{
+    //    CreateRandomDeckListClientRpc();
+    //}
+    //[ClientRpc]
+    //private void CreateRandomDeckListClientRpc()
+    //{
+    //    List<int> randomCardIds = new List<int>();
+    //    for(int i = 0; i < 4; i++)
+    //    {
+    //        int randomId;
 
-            do
-            {
-                randomId = Random.Range(0, 7);
-            }
-            while (randomCardIds.Contains(randomId));
+    //        do
+    //        {
+    //            randomId = Random.Range(0, 7);
+    //        }
+    //        while (randomCardIds.Contains(randomId));
 
-            randomCardIds.Add(randomId);
-        }
+    //        randomCardIds.Add(randomId);
+    //    }
 
-        foreach(int cardId in randomCardIds)
-        {
-            AddCardToListServerRpc(cardId, _playerIsHost);
-        }
-    }
+    //    foreach(int cardId in randomCardIds)
+    //    {
+    //        AddCardToListServerRpc(cardId, _playerIsHost);
+    //    }
+    //}
 
 }

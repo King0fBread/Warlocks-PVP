@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TimerLogic : NetworkBehaviour 
 {
     [SerializeField] private PlayerDeckList _playerDeckList;
+    [SerializeField] private GameObject _uncompleteDeckWarning;
 
     [SerializeField] private int _maxTimerValueInSeconds;
     private Slider _timerSlider;
@@ -56,12 +57,24 @@ public class TimerLogic : NetworkBehaviour
         }
         else
         {
-            _timerEnabled = false;
-            _backgroundImage.color = _hiddenColorAlpha;
+            if(_playerDeckList.GetLeftDeckList().Count < 4 || _playerDeckList.GetRightDeckList().Count < 4)
+            {
+                DisplayUncompletedDeckWarningClientRpc();
+                _timerValue = _maxTimerValueInSeconds;
+            }
+            else
+            {
+                _timerEnabled = false;
+                _backgroundImage.color = _hiddenColorAlpha;
 
-            _playerDeckList.CreateRandomDeckListServerRpc();
-            Camera playerCamera = Camera.main;
-            PlayerRoomTransitions.Instance.MovePlayerToArenaRoom(playerCamera.transform);
+                Camera playerCamera = Camera.main;
+                PlayerRoomTransitions.Instance.MovePlayerToArenaRoom(playerCamera.transform);
+            }
         }
+    }
+    [ClientRpc]
+    private void DisplayUncompletedDeckWarningClientRpc()
+    {
+        _uncompleteDeckWarning.SetActive(true);
     }
 }
