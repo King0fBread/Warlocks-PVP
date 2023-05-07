@@ -18,17 +18,12 @@ public class PlayerLogic : NetworkBehaviour
         _spriteRenderer.sprite = PlayerVisualsAssigner.Instance.GetSpriteByID((int)OwnerClientId);
         if (!IsServer)
         {
+            //second player joined
+            DisableLoaderServerRpc();
             MovePlayersToDeckRoomServerRpc();
         }
     }
-    //private void Update()
-    //{
-    //    if (!IsServer)
-    //    {
-    //        return;
-    //    }
 
-    //}
     [ServerRpc (RequireOwnership = false)]
     private void MovePlayersToDeckRoomServerRpc()
     {
@@ -39,5 +34,15 @@ public class PlayerLogic : NetworkBehaviour
     {
         Camera playerCamera = Camera.main;
         PlayerRoomTransitions.Instance.MovePlayerToDeckRoom(playerCamera.transform);
+    }
+    [ServerRpc (RequireOwnership = false)]
+    private void DisableLoaderServerRpc()
+    {
+        DisableLoaderClientRpc();
+    }
+    [ClientRpc]
+    private void DisableLoaderClientRpc()
+    {
+        Loader.Instance.DestroyLoader();
     }
 }
