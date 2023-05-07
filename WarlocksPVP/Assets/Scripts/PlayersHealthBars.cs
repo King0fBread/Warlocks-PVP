@@ -18,8 +18,11 @@ public class PlayersHealthBars : MonoBehaviour
     [SerializeField] private GameObject _leftHealthDownIndicator;
     [SerializeField] private GameObject _rightHealthDownIndicator;
 
-    private int _leftHealthValue = 20;
-    private int _rightHealthValue = 20;
+    private int _leftHealthValue = 25;
+    private int _rightHealthValue = 25;
+
+    private bool _leftCanHoldExtraHealth;
+    private bool _rightCanHoldExtraHealth;
 
     public static PlayersHealthBars Instance;
     private void Awake()
@@ -33,6 +36,11 @@ public class PlayersHealthBars : MonoBehaviour
 
         _leftHealthValueDisplayer.text = _leftHealthValue.ToString();
         _rightHealthValueDisplayer.text = _rightHealthValue.ToString();
+
+        if (_leftHealthValue <= 0)
+            print("left w");
+        if (_rightHealthValue <= 0)
+            print("right w");
     }
     public void DecreaseHealthValue(bool leftPlayerAffected, int amount)
     {
@@ -40,11 +48,19 @@ public class PlayersHealthBars : MonoBehaviour
         {
             _leftHealthValue -= amount;
             _leftHealthDownIndicator.SetActive(true);
+
+            if (_leftHealthValue <= 25)
+                _leftCanHoldExtraHealth = false;
         }
         else
         {
             _rightHealthValue -= amount;
             _rightHealthDownIndicator.SetActive(true);
+
+            if(_rightHealthValue <= 25)
+            {
+                _rightCanHoldExtraHealth = false;
+            }
         }
     }
     public void IncreaseHealthValue(bool leftPlayerAffected, int amount)
@@ -53,15 +69,34 @@ public class PlayersHealthBars : MonoBehaviour
         {
             _leftHealthValue += amount;
             _leftHelathUpIndicator.SetActive(true);
-            if (_leftHealthValue > 20)
-                _leftHealthValue = 20;
+
+            if (_leftHealthValue > 25 && !_leftCanHoldExtraHealth)
+                _leftHealthValue = 25;
+            else if (_leftHealthValue > 30)
+                _leftHealthValue = 30;
         }
         else
         {
             _rightHealthValue += amount;
             _rightHealthUpIndicator.SetActive(true);
-            if (_rightHealthValue > 20)
-                _rightHealthValue = 20;
+
+            if (_rightHealthValue > 25 && !_rightCanHoldExtraHealth)
+                _rightHealthValue = 25;
+            else if (_rightHealthValue > 30)
+                _rightHealthValue = 30;
+        }
+    }
+    public void AddExtraHealthToCoinTossWinner(bool leftPlayerAffected)
+    {
+        if (leftPlayerAffected)
+        {
+            _leftHealthValue += 5;
+            _leftCanHoldExtraHealth = true;
+        }
+        else
+        {
+            _rightHealthValue += 5;
+            _rightCanHoldExtraHealth = true;
         }
     }
 }
