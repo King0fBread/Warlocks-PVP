@@ -16,7 +16,6 @@ public class TestingLobbyUI : MonoBehaviour
         });
         _joinLobbyButton.onClick.AddListener(() => {
             NetworkManager.Singleton.StartClient();
-            SceneTransitions.LoadNetworkScene(SceneTransitions.Scene.ArenaScene);
         });
     }
 }

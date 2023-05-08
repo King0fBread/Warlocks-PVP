@@ -18,9 +18,9 @@ public class PlayerLogic : NetworkBehaviour
         _spriteRenderer.sprite = PlayerVisualsAssigner.Instance.GetSpriteByID((int)OwnerClientId);
         if (!IsServer)
         {
-            //second player joined
             DisableLoaderServerRpc();
             MovePlayersToDeckRoomServerRpc();
+            print(NetworkManager.Singleton.ConnectedClientsIds);
         }
     }
 
