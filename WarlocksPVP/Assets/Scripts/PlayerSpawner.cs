@@ -6,7 +6,6 @@ using Unity.Netcode;
 public class PlayerSpawner : NetworkBehaviour
 {
     [SerializeField] private Transform _playerPrefab;
-
     public override void OnNetworkSpawn()
     {
         if (IsServer)

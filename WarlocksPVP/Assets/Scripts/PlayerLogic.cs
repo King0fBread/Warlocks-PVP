@@ -20,7 +20,6 @@ public class PlayerLogic : NetworkBehaviour
         {
             DisableLoaderServerRpc();
             MovePlayersToDeckRoomServerRpc();
-            print(NetworkManager.Singleton.ConnectedClientsIds);
         }
     }
 

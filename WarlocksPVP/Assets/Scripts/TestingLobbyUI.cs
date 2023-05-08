@@ -12,7 +12,7 @@ public class TestingLobbyUI : MonoBehaviour
     {
         _createLobbyButton.onClick.AddListener(() => {
             NetworkManager.Singleton.StartHost();
-            SceneTransitions.LoadNetworkScene(SceneTransitions.Scene.ArenaScene); 
+            SceneTransitions.LoadNetworkScene(SceneTransitions.Scene.ReadyScene); 
         });
         _joinLobbyButton.onClick.AddListener(() => {
             NetworkManager.Singleton.StartClient();

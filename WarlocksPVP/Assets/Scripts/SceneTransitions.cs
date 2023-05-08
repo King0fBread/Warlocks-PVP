@@ -8,6 +8,7 @@ public static class SceneTransitions
 {
     public enum Scene{
         LobbyScene,
+        ReadyScene,
         ArenaScene
     }
     public static void LoadNetworkScene(Scene scene)
