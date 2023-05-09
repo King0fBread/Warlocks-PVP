@@ -18,8 +18,20 @@ public class PlayerLogic : NetworkBehaviour
         _spriteRenderer.sprite = PlayerVisualsAssigner.Instance.GetSpriteByID((int)OwnerClientId);
         if (!IsServer)
         {
-            DisableLoaderServerRpc();
             MovePlayersToDeckRoomServerRpc();
+        }
+        NetworkManager.OnClientDisconnectCallback += NetworkManager_OnClientDisconnectCallback;
+    }
+
+    private void NetworkManager_OnClientDisconnectCallback(ulong clientId)
+    {
+        if(clientId == 0)
+        {
+            GameOverScreen.Instance.DisplayWinScreen("left player won, right disconnected", true);
+        }
+        else
+        {
+            GameOverScreen.Instance.DisplayWinScreen("right player won, left disconnected", false);
         }
     }
 
@@ -33,15 +45,5 @@ public class PlayerLogic : NetworkBehaviour
     {
         Camera playerCamera = Camera.main;
         PlayerRoomTransitions.Instance.MovePlayerToDeckRoom(playerCamera.transform);
-    }
-    [ServerRpc (RequireOwnership = false)]
-    private void DisableLoaderServerRpc()
-    {
-        DisableLoaderClientRpc();
-    }
-    [ClientRpc]
-    private void DisableLoaderClientRpc()
-    {
-        Loader.Instance.DestroyLoader();
     }
 }
