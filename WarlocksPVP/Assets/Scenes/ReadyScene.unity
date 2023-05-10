@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 185757538}
   - component: {fileID: 185757537}
   - component: {fileID: 185757536}
+  - component: {fileID: 185757541}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -156,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _readyButton: {fileID: 2109124471}
+  _readyUpSceneText: {fileID: 632434580}
 --- !u!114 &185757537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,6 +242,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &185757541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185757535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 1908146301
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &490973263
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,8 +775,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1022311680}
-  - component: {fileID: 1022311679}
   - component: {fileID: 1022311681}
+  - component: {fileID: 1022311682}
   m_Layer: 0
   m_Name: PlayerReadyUpLogic
   m_TagString: Untagged
@@ -766,18 +784,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1022311679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022311678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d1b82a8c4a37814181abe7e6d9b6257, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1022311680
 Transform:
   m_ObjectHideFlags: 0
@@ -809,6 +815,20 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &1022311682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022311678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f70977f9c41dcd94f95656af23a33d78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _readyButton: {fileID: 2109124471}
+  _readyUpSceneText: {fileID: 632434580}
 --- !u!1 &1061598235
 GameObject:
   m_ObjectHideFlags: 0

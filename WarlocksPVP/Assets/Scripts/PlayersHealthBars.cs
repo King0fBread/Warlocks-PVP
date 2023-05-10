@@ -24,6 +24,8 @@ public class PlayersHealthBars : MonoBehaviour
     private bool _leftCanHoldExtraHealth;
     private bool _rightCanHoldExtraHealth;
 
+    private bool _endScreenOn = false;
+
     public static PlayersHealthBars Instance;
     private void Awake()
     {
@@ -37,11 +39,17 @@ public class PlayersHealthBars : MonoBehaviour
         _leftHealthValueDisplayer.text = _leftHealthValue.ToString();
         _rightHealthValueDisplayer.text = _rightHealthValue.ToString();
 
-        if (_leftHealthValue <= 0)
-            print("left w");
-        if (_rightHealthValue <= 0)
-            print("right w");
-    }
+        if (_leftHealthValue <= 0 && !_endScreenOn)
+        {
+            GameOverScreen.Instance.DisplayWinScreen("purple warlock wins!", false);
+            _endScreenOn = true;
+        }
+        if (_rightHealthValue <= 0 && !_endScreenOn)
+        {
+            GameOverScreen.Instance.DisplayWinScreen("orange warlock wins!", true);
+            _endScreenOn = true;
+        }
+    }   
     public void DecreaseHealthValue(bool leftPlayerAffected, int amount)
     {
         if (leftPlayerAffected)

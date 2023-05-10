@@ -27,11 +27,12 @@ public class PlayerLogic : NetworkBehaviour
     {
         if(clientId == 0)
         {
-            GameOverScreen.Instance.DisplayWinScreen("left player won, right disconnected", true);
+            GameOverScreen.Instance.DisplayWinScreen("purple warlock wins! (orange disconnected)", false);
+            
         }
         else
         {
-            GameOverScreen.Instance.DisplayWinScreen("right player won, left disconnected", false);
+            GameOverScreen.Instance.DisplayWinScreen("orange warlock wins! (purple disconnected)", true);
         }
     }
 

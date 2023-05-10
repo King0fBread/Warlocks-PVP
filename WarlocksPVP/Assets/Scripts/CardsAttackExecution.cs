@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class CardsAttackExecution : MonoBehaviour
 {
-    public event EventHandler OnEachPlayerHasAttacked;
-
     [SerializeField] private Sprite AttackSprite;
     [SerializeField] private Sprite PoisonSprite;
     [SerializeField] private Sprite HealSprite;

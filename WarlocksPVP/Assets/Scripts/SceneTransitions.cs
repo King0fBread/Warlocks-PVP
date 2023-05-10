@@ -15,4 +15,8 @@ public static class SceneTransitions
     {
         NetworkManager.Singleton.SceneManager.LoadScene(scene.ToString(), LoadSceneMode.Single);
     }
+    public static void LoadSceneLocally(Scene scene)
+    {
+        SceneManager.LoadScene(scene.ToString());
+    }
 }
