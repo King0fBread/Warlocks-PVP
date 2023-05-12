@@ -11,5 +11,10 @@ public class LobbySceneCleanUp : MonoBehaviour
         {
             Destroy(NetworkManager.Singleton.gameObject);
         }
+        if(LobbyManager.Instance != null)
+        {
+            Destroy(LobbyManager.Instance.gameObject);
+        }
     }
+    
 }
