@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class ReadyButtonAssigner : MonoBehaviour
 {
-    [SerializeField] private Button _readyButton;
+    [SerializeField] private Button _menuButton;
     private void Awake()
     {
-        _readyButton.onClick.AddListener(() => PlayerReadyUp.Instance.SetPlayerAsReady());
+        _menuButton.onClick.AddListener(() => LobbyManager.Instance.LeaveLobby());
     }
 }

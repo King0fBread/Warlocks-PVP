@@ -31,6 +31,7 @@ public class PlayerReadyUp : NetworkBehaviour
         }
         if (allClientsAreReady)
         {
+            LobbyManager.Instance.DeleteLobby();
             SceneTransitions.LoadNetworkScene(SceneTransitions.Scene.ArenaScene);
         }
     }

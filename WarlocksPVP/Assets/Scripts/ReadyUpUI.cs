@@ -9,6 +9,14 @@ public class ReadyUpUI: NetworkBehaviour
 {
     [SerializeField] private TextMeshProUGUI _readyUpSceneText;
     [SerializeField] private Button _readyButton;
+    [SerializeField] private Button _backButton;
+    private void Awake()
+    {
+        _backButton.onClick.AddListener(() =>
+        {
+            LobbyManager.Instance.LeaveLobby();
+        });
+    }
     private void Update()
     {
         if (!IsServer)
