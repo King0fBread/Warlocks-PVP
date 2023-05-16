@@ -4,7 +4,7 @@ using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.UI;
 
-public class MenuButton : MonoBehaviour
+public class GameOverButton : MonoBehaviour
 {
     private Button _toMenuButton;
     private void OnEnable()
@@ -20,7 +20,7 @@ public class MenuButton : MonoBehaviour
                 Destroy(LobbyManager.Instance.gameObject);
             }
 
-            SceneTransitions.LoadSceneLocally(SceneTransitions.Scene.LobbyScene);
+            SceneTransitions.LoadSceneLocally(SceneTransitions.Scene.MenuScene);
         });
     }
 }

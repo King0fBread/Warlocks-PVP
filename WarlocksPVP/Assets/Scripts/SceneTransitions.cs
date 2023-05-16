@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public static class SceneTransitions
 {
     public enum Scene{
+        MenuScene,
         LobbyScene,
         ReadyScene,
         ArenaScene

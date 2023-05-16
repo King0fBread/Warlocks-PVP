@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class LobbySceneCleanUp : MonoBehaviour
+public class MenuSceneCleanUp : MonoBehaviour
 {
     private void Awake()
     {
