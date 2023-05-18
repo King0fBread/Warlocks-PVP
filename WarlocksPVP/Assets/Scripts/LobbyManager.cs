@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,15 @@ public class LobbyManager : MonoBehaviour
 {
     public static LobbyManager Instance { get; private  set; }
 
+    public event EventHandler<OnLobbyListChangedEventArgs> OnLobbyListChanged;
+    public class OnLobbyListChangedEventArgs : EventArgs
+    {
+        public List<Lobby> lobbyList;
+    }
+
     private Lobby _joinedLobby;
     private float _heartbeatTimer = 20f;
+    private float _listLobbiesTimer;
     private void Awake()
     {
         Instance = this;
@@ -23,7 +31,23 @@ public class LobbyManager : MonoBehaviour
     private void Update()
     {
         HandleLobbyHeartbeat();
+        HandleListingActiveLobbies();
     }
+
+    private void HandleListingActiveLobbies()
+    {
+        if(_joinedLobby == null && AuthenticationService.Instance.IsSignedIn)
+        {
+            _listLobbiesTimer -= Time.deltaTime;
+            if(_listLobbiesTimer <= 0f)
+            {
+                float listLobbiesTimerMax = 2f;
+                _listLobbiesTimer = listLobbiesTimerMax;
+                ListLobbies();
+            }
+        }
+    }
+
     private void HandleLobbyHeartbeat()
     {
         if (IsLobbyHost())
@@ -42,12 +66,33 @@ public class LobbyManager : MonoBehaviour
     {
         return _joinedLobby != null && _joinedLobby.HostId == AuthenticationService.Instance.PlayerId;
     }
+    private async void ListLobbies()
+    {
+        try
+        {
+            QueryLobbiesOptions queryLobbiesOptions = new QueryLobbiesOptions
+            {
+                Filters = new List<QueryFilter>
+                {
+                    new QueryFilter(QueryFilter.FieldOptions.AvailableSlots, "0", QueryFilter.OpOptions.GT)
+                }
+            };
+            QueryResponse queryResponse = await LobbyService.Instance.QueryLobbiesAsync(queryLobbiesOptions);
+            OnLobbyListChanged?.Invoke(this, new OnLobbyListChangedEventArgs {
+                lobbyList = queryResponse.Results
+            });
+        }
+        catch(LobbyServiceException ex)
+        {
+            Debug.Log(ex);
+        }
+    }
     private async void InitializeUnityAuthentication()
     {
         if (UnityServices.State != ServicesInitializationState.Initialized)
         {
             InitializationOptions initializationOptions = new InitializationOptions();
-            initializationOptions.SetProfile(Random.Range(0, 10000).ToString());
+            initializationOptions.SetProfile(UnityEngine.Random.Range(0, 10000).ToString());
 
             await UnityServices.InitializeAsync(initializationOptions);
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
@@ -107,6 +152,18 @@ public class LobbyManager : MonoBehaviour
             NetworkManager.Singleton.StartClient(); 
         }
         catch (LobbyServiceException ex)
+        {
+            Debug.Log(ex);
+        }
+    }
+    public async void JoinWithId(string lobbyId)
+    {
+        try
+        {
+            _joinedLobby = await LobbyService.Instance.JoinLobbyByIdAsync(lobbyId);
+            NetworkManager.Singleton.StartClient();
+        }
+        catch(LobbyServiceException ex)
         {
             Debug.Log(ex);
         }
