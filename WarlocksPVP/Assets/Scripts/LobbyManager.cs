@@ -1,13 +1,17 @@
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using Unity.Netcode.Transports.UTP;
+using Unity.Networking.Transport.Relay;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Lobbies.Models;
 using Unity.Services.Lobbies;
-
+using Unity.Services.Relay;
+using Unity.Services.Relay.Models;
 public class LobbyManager : MonoBehaviour
 {
     public static LobbyManager Instance { get; private  set; }
@@ -62,6 +66,32 @@ public class LobbyManager : MonoBehaviour
             }
         }
     }
+    private async Task<Allocation> AllocateRelay()
+    {
+        try
+        {
+            Allocation allocation = await RelayService.Instance.CreateAllocationAsync(1);
+            return allocation;
+        }
+        catch(RelayServiceException ex)
+        {
+            Debug.Log(ex);
+            return default;
+        }
+    }
+    private async Task<string> GetRelayJoinCode(Allocation allocation)
+    {
+        try
+        {
+            string relayJoinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
+            return relayJoinCode;
+        }
+        catch(RelayServiceException ex)
+        {
+            Debug.Log(ex);
+            return default;
+        }
+    }
     private bool IsLobbyHost()
     {
         return _joinedLobby != null && _joinedLobby.HostId == AuthenticationService.Instance.PlayerId;
@@ -106,6 +136,11 @@ public class LobbyManager : MonoBehaviour
             {
                 IsPrivate = isPrivate
             });
+            Allocation allocation = await AllocateRelay();
+            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "dtls"));
+
+            string relayJoinCode = await GetRelayJoinCode(allocation);
+
             NetworkManager.Singleton.StartHost();
             SceneTransitions.LoadNetworkScene(SceneTransitions.Scene.ReadyScene);
         }
