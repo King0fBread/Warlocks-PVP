@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
 
-public class MenuButtonAssigner : NetworkBehaviour
+public class ReadySceneMenuButtonAssigner : NetworkBehaviour
 {
     [SerializeField] private Button _menuButton;
     public override void OnNetworkSpawn()

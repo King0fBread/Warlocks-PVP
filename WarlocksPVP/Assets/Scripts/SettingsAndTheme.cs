@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SettingsAndTheme : MonoBehaviour
 {
@@ -37,5 +38,15 @@ public class SettingsAndTheme : MonoBehaviour
                 _themeSource.Play();
         });
         _themeSource.Play();
+    }
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name == "LobbyScene" || SceneManager.GetActiveScene().name == "ArenaScene")
+        {
+            if (!_toMenuButton.gameObject.activeSelf)
+                _toMenuButton.gameObject.SetActive(true);
+        }
+        else if (_toMenuButton.gameObject.activeSelf)
+            _toMenuButton.gameObject.SetActive(false);
     }
 }
