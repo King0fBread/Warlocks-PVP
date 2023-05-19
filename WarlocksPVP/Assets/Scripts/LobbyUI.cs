@@ -11,6 +11,8 @@ public class LobbyUI : MonoBehaviour
 
     [SerializeField] private Transform _lobbyContainer;
     [SerializeField] private Transform _lobbyTemplate;
+
+    [SerializeField] private Transform _connectingToLobbyMessageObject;
     private void Awake()
     {
         _createLobbyButton.onClick.AddListener(() => 
@@ -49,5 +51,9 @@ public class LobbyUI : MonoBehaviour
             lobbyTransform.gameObject.SetActive(true);
             lobbyTransform.GetComponent<SingleLobbyUI>().SetLobbyInfo(lobby);
         }
+    }
+    public void DisplayConnectingMessage()
+    {
+        _connectingToLobbyMessageObject.gameObject.SetActive(true);
     }
 }
