@@ -59,7 +59,6 @@ public class PoisonAttackLogic : NetworkBehaviour
     [ClientRpc]
     private void ApplyExistingPoisonClientRpc()
     {
-        print("poison logic");
         if (_currentLeftPoisonAmount > 0)
         {
             PlayersHealthBars.Instance.DecreaseHealthValue(true, _currentLeftPoisonAmount);

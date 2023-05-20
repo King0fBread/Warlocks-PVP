@@ -35,7 +35,6 @@ public class PlayerRoomTransitions : NetworkBehaviour
     public void MoveBothPlayersToDeckRoomClientRpc()
     {
         MovePlayerToDeckRoom(Camera.main.transform);
-        print("moved to deck room client rpc");
     }
 
 }

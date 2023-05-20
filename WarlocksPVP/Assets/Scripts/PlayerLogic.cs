@@ -9,7 +9,6 @@ public class PlayerLogic : NetworkBehaviour
     private SpriteRenderer _spriteRenderer;
     private void Awake()
     {
-        Debug.Log("spawned player");
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
     public override void OnNetworkSpawn()

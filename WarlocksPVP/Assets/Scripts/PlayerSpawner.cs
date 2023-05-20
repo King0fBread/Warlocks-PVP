@@ -18,7 +18,6 @@ public class PlayerSpawner : NetworkBehaviour
     {
         foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
         {
-            print("client id " + clientId);
             Transform playerTransform = Instantiate(_playerPrefab);
             playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);
         }
