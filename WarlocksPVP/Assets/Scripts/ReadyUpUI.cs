@@ -10,6 +10,9 @@ public class ReadyUpUI: NetworkBehaviour
     [SerializeField] private TextMeshProUGUI _readyUpSceneText;
     [SerializeField] private Button _readyButton;
     [SerializeField] private Button _backButton;
+
+    [SerializeField] private Button _helpPanelButton;
+    [SerializeField] private Image _helpPanel;
     private void Awake()
     {
         _backButton.onClick.AddListener(() =>
@@ -34,6 +37,9 @@ public class ReadyUpUI: NetworkBehaviour
     [ClientRpc]
     private void EnableReadyUIClientRpc()
     {
+        _helpPanelButton.gameObject.SetActive(false);
+        _helpPanel.gameObject.SetActive(false);
+
         _readyButton.gameObject.SetActive(true);
         _readyButton.onClick.AddListener(() => PlayerReadyUp.Instance.SetPlayerAsReady());
         _readyUpSceneText.text = "Waiting for everyoone to ready up";
@@ -41,6 +47,8 @@ public class ReadyUpUI: NetworkBehaviour
     [ClientRpc]
     private void DisableReadyUIClientRpc()
     {
+        _helpPanelButton.gameObject.SetActive(true);
+
         _readyButton.gameObject.SetActive(false);
         _readyUpSceneText.text = "Waiting for your opponent to connect";
     }
